@@ -1,0 +1,29 @@
+  @font-face {
+    font-family: "Computer Modern Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url("fonts/computer-modern/CMUSansSerif.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Computer Modern Sans";
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+    src: url("fonts/computer-modern/CMUSansSerif-Bold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Computer Modern Sans";
+    font-style: italic;
+    font-weight: normal;
+    font-display: swap;
+    src: url("fonts/computer-modern/CMUSansSerif-Oblique.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Computer Modern Sans";
+    font-style: italic;
+    font-weight: bold;
+    font-display: swap;
+    src: url("fonts/computer-modern/CMUSansSerif-BoldOblique.woff2")
+      format("woff2");
+  }

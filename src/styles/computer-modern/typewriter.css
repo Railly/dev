@@ -1,0 +1,29 @@
+  @font-face {
+    font-family: "Computer Modern Typewriter";
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url("fonts/computer-modern/CMUTypewriter-Regular.woff2")
+      format("woff2");
+  }
+  @font-face {
+    font-family: "Computer Modern Typewriter";
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+    src: url("CMUTypewriter-Bold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Computer Modern Typewriter";
+    font-style: italic;
+    font-weight: normal;
+    font-display: swap;
+    src: url("CMUTypewriter-Italic.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Computer Modern Typewriter";
+    font-style: italic;
+    font-weight: bold;
+    font-display: swap;
+    src: url("CMUTypewriter-BoldItalic.woff2") format("woff2");
+  }

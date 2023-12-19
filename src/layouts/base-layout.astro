@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  author: string;
+}
+
+const { title, description, author } = Astro.props;
+---
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../styles/computer-modern/bright.css" />
+    <link rel="stylesheet" href="../styles/computer-modern/concrete.css" />
+    <link rel="stylesheet" href="../styles/computer-modern/sans.css" />
+    <link rel="stylesheet" href="../styles/computer-modern/serif.css" />
+    <link rel="stylesheet" href="../styles/computer-modern/typewriter.css" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+  </head>
+  <body class="container flex justify-center mx-auto w-100 bg-neutral-900">
+    <article
+      class="prose w-100 prose-lg prose-neutral dark:prose-invert font-serif py-4"
+    >
+      <slot />
+    </article>
+    <!-- <Footer /> -->
+  </body>
+</html>

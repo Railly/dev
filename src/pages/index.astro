@@ -1,16 +1,155 @@
 ---
-
+import BaseLayout from "../layouts/base-layout.astro";
+import OneHunterCode from "../ui/one-hunter-code.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Home Page"
+  description="This is the home page"
+  author="Railly Hugo"
+>
+  PDDL | The Planning Domain Definition Language
+  <p>Just like our midterm review guide</p>
+
+  <p>
+    PDDL is a language for describing planning domains (sets of states and
+    actions) and problems (initial states, goals, constraints). It is an
+    international standard (<a
+      href="http://www.plg.inf.uc3m.es/ipc2018-deterministic/pddl">PDDL 3.1</a
+    >) and is used by many planning systems.
+  </p>
+
+  <ul>
+    <li>
+      <a href="/pddl/3.1">PDDL 3.1</a>
+    </li>
+    <li>
+      <a href="/pddl/2.1">PDDL 2.1</a>
+    </li>
+    <li>
+      <a href="/pddl/1.2">PDDL 1.2</a>
+    </li>
+  </ul>
+  <ol>
+    <li>
+      <a href="/pddl/3.1">PDDL 3.1</a>
+    </li>
+    <li>
+      <a href="/pddl/2.1">PDDL 2.1</a>
+    </li>
+    <li>
+      <a href="/pddl/1.2">PDDL 1.2</a>
+    </li>
+  </ol>
+  <OneHunterCode
+    code={`(define (domain domain-name)
+  (:requirements req1 req2 ...)
+  (:types type1 type2 ...)
+  (:constants const1 const2 ...)
+  (:predicates (pred1 ?var1 ?var2 ...)
+               (pred2 ?var1 ?var2 ...))
+  (:functions (func1 ?var1 ?var2 ...)
+              (func2 ?var1 ?var2 ...))
+  (:action action-name
+    :parameters (?var1 ?var2 ...)
+    :precondition (and (pred1 ?var1 ?var2 ...)
+                       (pred2 ?var1 ?var2 ...))
+    :effect (and (pred1 ?var1 ?var2 ...)
+                 (pred2 ?var1 ?var2 ...)))
+  (:derived (derived1 ?var1 ?var2 ...)
+            (derived2 ?var1 ?var2 ...)))`}
+    lang={"lisp"}
+  />
+  <OneHunterCode code={`print("Hello, World!")`} lang={"python"} />
+  <OneHunterCode code={`console.log("Hello, World!")`} lang={"javascript"} />
+  <blockquote>
+    <p>
+      <a href="http://www.plg.inf.uc3m.es/ipc2018-deterministic/pddl"
+        >PDDL 3.1</a
+      > is the latest version of the language, and is used by the
+      <a href="http://www.plg.inf.uc3m.es/ipc2018-deterministic/">IPC 2018</a>.
+    </p>
+  </blockquote>
+
+  <code> Simple Code Block</code>
+
+  <p>
+    The infinite sum
+    <math display="block">
+      <mrow>
+        <munderover>
+          <mo>∑</mo>
+          <mrow>
+            <mi>n</mi>
+            <mo>=</mo>
+            <mn>1</mn>
+          </mrow>
+          <mrow>
+            <mo>+</mo>
+            <mn>∞</mn>
+          </mrow>
+        </munderover>
+        <mfrac>
+          <mn>1</mn>
+          <msup>
+            <mi>n</mi>
+            <mn>2</mn>
+          </msup>
+        </mfrac>
+      </mrow>
+    </math>
+     is equal to the real number
+    <math display="inline">
+      <mfrac>
+        <msup>
+          <mi>π</mi>
+          <mn>2</mn>
+        </msup>
+        <mn>6</mn>
+      </mfrac></math
+    >.
+  </p>
+
+  <math display="block">
+    <mi>Corr</mi>
+    <mo>&#x2061;</mo><!-- function application -->
+    <mfenced>
+      <mrow>
+        <mi>X</mi>
+        <mo>,</mo>
+        <mi>Y</mi>
+      </mrow>
+    </mfenced>
+    <mo>=</mo>
+    <mfrac>
+      <mrow>
+        <mi>Cov</mi>
+        <mo>&#x2061;</mo><!-- function application -->
+        <mfenced>
+          <mrow>
+            <mi>X</mi>
+            <mo>,</mo>
+            <mi>Y</mi>
+          </mrow>
+        </mfenced>
+      </mrow>
+      <mrow>
+        <msqrt>
+          <mrow>
+            <mi>Var</mi>
+            <mo>&#x2061;</mo><!-- function application -->
+            <mfenced>
+              <mi>X</mi>
+            </mfenced>
+            <mo>&#x22C5;</mo><!-- dot operator -->
+            <mi>Var</mi>
+            <mo>&#x2061;</mo><!-- function application -->
+            <mfenced>
+              <mi>Y</mi>
+            </mfenced>
+          </mrow>
+        </msqrt>
+      </mrow>
+    </mfrac>
+  </math>
+</BaseLayout>

@@ -1,0 +1,28 @@
+  @font-face {
+    font-family: "Computer Modern Serif";
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url("fonts/computer-modern/CMUSerif-Roman.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Computer Modern Serif";
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+    src: url("fonts/computer-modern/CMUSerif-Bold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Computer Modern Serif";
+    font-style: italic;
+    font-weight: normal;
+    font-display: swap;
+    src: url("fonts/computer-modern/CMUSerif-Italic.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Computer Modern Serif";
+    font-style: italic;
+    font-weight: bold;
+    font-display: swap;
+    src: url("fonts/computer-modern/CMUSerif-BoldItalic.woff2") format("woff2");
+  }
