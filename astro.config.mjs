@@ -1,13 +1,32 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import oneHunterMaterial from "./public/theme/OneHunter-Material-color-theme.json";
+import oneHunterThemeVercelLight2024 from "./public/theme/one-hunter-vercel-light.json";
+import oneHunterThemeVercelDark2024 from "./public/theme/one-hunter-vercel-dark.json";
 
-// https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()],
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+  ],
   markdown: {
     shikiConfig: {
-      theme: oneHunterMaterial,
+      themes: {
+        light: oneHunterThemeVercelLight2024,
+        dark: oneHunterThemeVercelDark2024,
+      },
+      cssVariablePrefix: "--shiki-",
+      defaultColor: "light",
+      cssVariablePrefix: "--shiki-",
+      langs: [],
+      transformers: [
+        {
+          line(node, line) {
+            node.properties["data-line"] = line;
+            this.addClassToHast(node, "line");
+          },
+        },
+      ],
     },
   },
 });

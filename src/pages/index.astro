@@ -1,155 +1,156 @@
 ---
 import BaseLayout from "../layouts/base-layout.astro";
-import OneHunterCode from "../ui/one-hunter-code.astro";
 ---
 
 <BaseLayout
-  title="Home Page"
-  description="This is the home page"
+  title="Railly Hugo"
+  description="Software Engineer and AI enthusiast. Building developer tools and open source projects."
   author="Railly Hugo"
 >
-  PDDL | The Planning Domain Definition Language
-  <p>Just like our midterm review guide</p>
+  <section class="flex gap-1 items-center">
+    <h1 class="text-lg font-medium m-0">Railly Hugo</h1>
+    <p class="m-0">~</p>
+    <h2 class="text-lg font-medium m-0">Hunter</h2>
+  </section>
+  <section class="inline-flex gap-1 items-center">
+    <h3 class="text-lg !font-medium m-0 text-muted-foreground">
+      Software Engineer
+    </h3>
+    <p class="m-0">~</p>
+    <h4 class="hidden md:block text-lg !font-medium m-0 text-muted-foreground">
+      Pursuing a MS in AI
+    </h4>
+    <h4 class="md:hidden text-lg !font-medium m-0 text-muted-foreground">
+      MS in AI
+    </h4>
+  </section>
+  <!-- <p class="mt-2">Leaving a footprint for humanity</p> -->
 
-  <p>
-    PDDL is a language for describing planning domains (sets of states and
-    actions) and problems (initial states, goals, constraints). It is an
-    international standard (<a
-      href="http://www.plg.inf.uc3m.es/ipc2018-deterministic/pddl">PDDL 3.1</a
-    >) and is used by many planning systems.
-  </p>
-
-  <ul>
-    <li>
-      <a href="/pddl/3.1">PDDL 3.1</a>
-    </li>
-    <li>
-      <a href="/pddl/2.1">PDDL 2.1</a>
-    </li>
-    <li>
-      <a href="/pddl/1.2">PDDL 1.2</a>
-    </li>
-  </ul>
-  <ol>
-    <li>
-      <a href="/pddl/3.1">PDDL 3.1</a>
-    </li>
-    <li>
-      <a href="/pddl/2.1">PDDL 2.1</a>
-    </li>
-    <li>
-      <a href="/pddl/1.2">PDDL 1.2</a>
-    </li>
-  </ol>
-  <OneHunterCode
-    code={`(define (domain domain-name)
-  (:requirements req1 req2 ...)
-  (:types type1 type2 ...)
-  (:constants const1 const2 ...)
-  (:predicates (pred1 ?var1 ?var2 ...)
-               (pred2 ?var1 ?var2 ...))
-  (:functions (func1 ?var1 ?var2 ...)
-              (func2 ?var1 ?var2 ...))
-  (:action action-name
-    :parameters (?var1 ?var2 ...)
-    :precondition (and (pred1 ?var1 ?var2 ...)
-                       (pred2 ?var1 ?var2 ...))
-    :effect (and (pred1 ?var1 ?var2 ...)
-                 (pred2 ?var1 ?var2 ...)))
-  (:derived (derived1 ?var1 ?var2 ...)
-            (derived2 ?var1 ?var2 ...)))`}
-    lang={"lisp"}
-  />
-  <OneHunterCode code={`print("Hello, World!")`} lang={"python"} />
-  <OneHunterCode code={`console.log("Hello, World!")`} lang={"javascript"} />
-  <blockquote>
+  <section class="mt-8">
+    <h2 class="text-base !font-medium text-muted-foreground mt-0">Present</h2>
     <p>
-      <a href="http://www.plg.inf.uc3m.es/ipc2018-deterministic/pddl"
-        >PDDL 3.1</a
-      > is the latest version of the language, and is used by the
-      <a href="http://www.plg.inf.uc3m.es/ipc2018-deterministic/">IPC 2018</a>.
+      I work as a full-stack engineer at
+      <a href="https://www.globant.com/" target="_blank">Globant</a>
+      , contributing to Disney O&I Engineering Team. <br /> I like to build developer
+      tools for myself and make them open source for the community.
     </p>
-  </blockquote>
+  </section>
 
-  <code> Simple Code Block</code>
-
-  <p>
-    The infinite sum
-    <math display="block">
-      <mrow>
-        <munderover>
-          <mo>∑</mo>
-          <mrow>
-            <mi>n</mi>
-            <mo>=</mo>
-            <mn>1</mn>
-          </mrow>
-          <mrow>
-            <mo>+</mo>
-            <mn>∞</mn>
-          </mrow>
-        </munderover>
-        <mfrac>
-          <mn>1</mn>
-          <msup>
-            <mi>n</mi>
-            <mn>2</mn>
-          </msup>
-        </mfrac>
-      </mrow>
-    </math>
-     is equal to the real number
-    <math display="inline">
-      <mfrac>
-        <msup>
-          <mi>π</mi>
-          <mn>2</mn>
-        </msup>
-        <mn>6</mn>
-      </mfrac></math
-    >.
-  </p>
-
-  <math display="block">
-    <mi>Corr</mi>
-    <mo>&#x2061;</mo><!-- function application -->
-    <mfenced>
-      <mrow>
-        <mi>X</mi>
-        <mo>,</mo>
-        <mi>Y</mi>
-      </mrow>
-    </mfenced>
-    <mo>=</mo>
-    <mfrac>
-      <mrow>
-        <mi>Cov</mi>
-        <mo>&#x2061;</mo><!-- function application -->
-        <mfenced>
-          <mrow>
-            <mi>X</mi>
-            <mo>,</mo>
-            <mi>Y</mi>
-          </mrow>
-        </mfenced>
-      </mrow>
-      <mrow>
-        <msqrt>
-          <mrow>
-            <mi>Var</mi>
-            <mo>&#x2061;</mo><!-- function application -->
-            <mfenced>
-              <mi>X</mi>
-            </mfenced>
-            <mo>&#x22C5;</mo><!-- dot operator -->
-            <mi>Var</mi>
-            <mo>&#x2061;</mo><!-- function application -->
-            <mfenced>
-              <mi>Y</mi>
-            </mfenced>
-          </mrow>
-        </msqrt>
-      </mrow>
-    </mfrac>
-  </math>
+  <section class="mt-8 max-w-screen overflow-x-auto">
+    <div class="grid grid-cols-3 gap-6 w-[600px] md:w-full">
+      <div>
+        <h2 class="text-base text-muted-foreground m-0 mb-4 !font-medium">
+          Building
+        </h2>
+        <div class="flex flex-col gap-4">
+          <div>
+            <a
+              href="https://crafter-station.com"
+              target="_blank"
+              class="text-base font-medium m-0">Crafter Station</a
+            >
+            <p class="mt-2 text-accent-foreground">
+              Digital lab for crafting new ideas and projects
+            </p>
+          </div>
+          <div>
+            <div>
+              <a
+                href="https://semantik.studio"
+                target="_blank"
+                class="text-base font-medium m-0">Semantik</a
+              >
+              <p class="mt-2 text-accent-foreground">
+                AI-powered studio for databases and APIs
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-base text-muted-foreground m-0 mb-4 !font-medium">
+          Open Source
+        </h2>
+        <div class="flex flex-col gap-4">
+          <div>
+            <a
+              href="https://marketplace.visualstudio.com/items?itemName=RaillyHugo.one-hunter"
+              target="_blank"
+              class="text-base font-medium m-0">One Hunter Theme</a
+            >
+            <p class="mt-2 text-accent-foreground">
+              VS Code theme inspired by Vercel and Flexoki
+            </p>
+          </div>
+          <div>
+            <div>
+              <a
+                href="https://shadcn-ui-customizer.vercel.app"
+                class="text-base font-medium m-0">shadcn/ui customizer</a
+              >
+              <p class="mt-2 text-accent-foreground">
+                Tune your shadcn/ui themes with color pickers
+              </p>
+            </div>
+          </div>
+          <div>
+            <a
+              href="https://github.com/Railly/obsidian-simple-flashcards"
+              class="text-base font-medium m-0">Obsidian Simple Flashcards</a
+            >
+            <p class="mt-2 text-accent-foreground">
+              Turn fenced code blocks into flashcards in Obsidian
+            </p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-base text-muted-foreground m-0 mb-4 !font-medium">
+          Explore
+        </h2>
+        <div class="flex flex-col gap-4">
+          <div>
+            <a href="/blog" class="text-base font-medium m-0">Technical Blog</a>
+            <p class="mt-2 text-accent-foreground">
+              Sharing my knowledge on Web Development and AI
+            </p>
+          </div>
+          <div>
+            <div>
+              <a href="/marketplace" class="text-base font-medium m-0">
+                Marketplace
+              </a>
+              <p class="mt-2 text-accent-foreground">
+                Discover and support my projects
+              </p>
+            </div>
+          </div>
+          <div>
+            <p class="text-base font-bold m-0">Social Media</p>
+            <div class="flex gap-2 mt-2">
+              <a
+                href="https://x.com/raillyhugo"
+                target="_blank"
+                class="text-accent-foreground font-bold">𝕏</a
+              >
+              ,
+              <a
+                href="https://linkedin.com/in/railly-hugo"
+                target="_blank"
+                class="text-accent-foreground">LinkedIn</a
+              >
+              ,
+              <a
+                href="https://github.com/Railly"
+                target="_blank"
+                class="text-accent-foreground"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

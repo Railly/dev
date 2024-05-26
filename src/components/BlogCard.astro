@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props as Props;
+---
+
+<div class="border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+  <a href={`/blog/${post.slug}`} class="text-xl font-medium"
+    >{post.data.title}</a
+  >
+  <p class="text-muted-foreground mt-2">{post.data.excerpt}</p>
+  <a
+    href={`/blog/${post.slug}`}
+    class="text-accent-foreground font-bold mt-4 inline-block">Read more →</a
+  >
+</div>

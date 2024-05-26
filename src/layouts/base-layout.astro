@@ -1,4 +1,7 @@
 ---
+import "@/styles/globals.css";
+import "@fontsource-variable/figtree";
+
 interface Props {
   title: string;
   description: string;
@@ -8,7 +11,48 @@ interface Props {
 const { title, description, author } = Astro.props;
 ---
 
-<html class="dark" lang="en">
+<script is:inline>
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+
+  const applyThemePreference = (isDark) => {
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+  };
+
+  const updateThemePreference = () => {
+    const isDark = getThemePreference() === "dark";
+    applyThemePreference(isDark);
+  };
+
+  // Apply initial theme preference
+  updateThemePreference();
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+
+  // Listen for changes in system theme preference
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  mediaQuery.addEventListener("change", (event) => {
+    const isDark = event.matches;
+    applyThemePreference(isDark);
+  });
+</script>
+
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,12 +65,12 @@ const { title, description, author } = Astro.props;
     <meta name="description" content={description} />
     <meta name="author" content={author} />
   </head>
-  <body class="container flex justify-center mx-auto w-100 bg-neutral-900">
-    <article
-      class="prose w-100 prose-lg prose-neutral dark:prose-invert font-serif py-4"
+  <body class="">
+    <main
+      class="dark:selection:bg-stone-800 selection:bg-muted prose prose-p:text-foreground dark:prose-invert font-sans mx-auto my-12 max-w-[768px] px-6 antialiased sm:my-32 md:my-16 prose-headings:font-semibold prose-a:decoration-muted-foreground/30 dark:prose-a:decoration-muted-foreground/70 prose-a:underline-offset-2 hover:prose-a:decoration-muted-foreground/70 dark:hover:prose-a:decoration-muted-foreground transition-colors duration-500 prose-hr:border-border"
     >
       <slot />
-    </article>
+    </main>
     <!-- <Footer /> -->
   </body>
 </html>

@@ -1,0 +1,33 @@
+---
+const { headings } = Astro.props;
+
+const tocItems: {
+  slug: string;
+  text: string;
+  level: number;
+}[] = headings.map((heading: { slug: string; text: string; depth: number }) => {
+  const slug = heading.slug;
+  const text = heading.text;
+  const level = heading.depth;
+  return { slug, text, level };
+});
+---
+
+<h2 class="text-sm text-muted-foreground/70 font-bold mb-4 uppercase">
+  On this page
+</h2>
+<ul>
+  {
+    tocItems.map((item) => (
+      <li class={`pl-${item.level * 2}`}>
+        <a
+          href={`#${item.slug}`}
+          class="text-base text-muted-foreground font-medium hover:text-accent-foreground transition-colors"
+        >
+          {item.text}
+        </a>
+      </li>
+    ))
+  }
+</ul>
+<hr />

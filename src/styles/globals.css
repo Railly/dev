@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --flexoki-bg: 48 100% 97%;
+    --flexoki-bg-2: 51 33% 92%;
+
+    --flexoki-ui: 51 21% 88%;
+    --flexoki-ui-2: 50 14% 83%;
+    --flexoki-ui-3: 55 10% 79%;
+
+    --flexoki-tx: 0 3% 6%;
+    --flexoki-tx-2: 50 3% 42%;
+    --flexoki-tx-3: 49 7% 70%;
+
+    --flexoki-re: 3 62% 42%;
+
+    --flexoki-or: 188 82 21;
+    --flexoki-ye: 173 131 1;
+    --flexoki-gr: 102 128 11;
+    --flexoki-cy: 36 131 123;
+    --flexoki-bl: 32 94 166;
+    --flexoki-pu: 94 64 157;
+    --flexoki-ma: 160 47 111;
+  }
+
+  .dark {
+    --flexoki-bg: 0 3% 6%;
+    --flexoki-bg-2: 30 4% 11%;
+
+    --flexoki-ui: 30 3% 15%;
+    --flexoki-ui-2: 40 3% 20%;
+    --flexoki-ui-3: 30 3% 24%;
+
+    --flexoki-tx: 55 10% 79%;
+    --flexoki-tx-2: 43 3% 52%;
+    --flexoki-tx-3: 45 2% 33%;
+
+    --flexoki-re: 5 61% 54%;
+
+    --flexoki-ye: 208 162 21;
+    --flexoki-or: 218 112 44;
+    --flexoki-gr: 135 154 57;
+    --flexoki-cy: 58 169 159;
+    --flexoki-bl: 67 133 190;
+    --flexoki-pu: 139 126 200;
+    --flexoki-ma: 206 93 151;
+  }
+  /* LIGHT MODE */
+  /* --flexoki-or: #bc5215;
+    --flexoki-ye: #ad8301;
+    --flexoki-gr: #66800b;
+    --flexoki-cy: #24837b;
+    --flexoki-bl: #205ea6;
+    --flexoki-pu: #5e409d;
+    --flexoki-ma: #a02f6f; */
+
+  :root {
+    --background: var(--flexoki-bg);
+    --foreground: var(--flexoki-tx);
+    --card: var(--flexoki-bg-2);
+    --card-foreground: var(--flexoki-tx);
+    --popover: var(--flexoki-bg);
+    --popover-foreground: var(--flexoki-tx);
+    --primary: var(--flexoki-tx);
+    --primary-foreground: var(--flexoki-bg);
+    --secondary: var(--flexoki-ui-2);
+    --secondary-foreground: var(--flexoki-tx-2);
+    --faint: var(--flexoki-bg);
+    --faint-foreground: var(--flexoki-tx-3);
+    --muted: var(--flexoki-bg-2);
+    --muted-foreground: var(--flexoki-tx-2);
+    --accent: var(--flexoki-ui);
+    --accent-foreground: var(--flexoki-tx-2);
+    --destructive: var(--flexoki-re);
+    --destructive-foreground: var(--flexoki-bg);
+    --border: var(--flexoki-ui-2);
+    --input: var(--flexoki-ui-2);
+    --ring: var(--flexoki-ui-3);
+    --radius: 0.5rem;
+    --gradient: linear-gradient(
+      45deg,
+      #000000,
+      #1c1c1c,
+      #383838,
+      #555555,
+      #717171
+    );
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    scrollbar-color: hsl(var(--flexoki-tx-2) / 0.5) hsl(var(--flexoki-ui) / 0.5);
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html.dark .astro-code,
+  html.dark .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+
+  html.dark .astro-code,
+  html:not(.dark) .astro-code {
+    border: 1px solid hsl(var(--border)) !important;
+  }
+
+  html.dark .astro-code code,
+  html:not(.dark) .astro-code code {
+    counter-reset: step !important;
+    counter-increment: step calc(var(--start, 1) - 1) !important;
+  }
+
+  html.dark .astro-code code .line:not(:last-child)::before,
+  html:not(.dark) .astro-code code .line:not(:last-child)::before {
+    content: counter(step) !important;
+    counter-increment: step !important;
+    width: 1rem !important;
+    margin-right: 1.5rem !important;
+    display: inline-block !important;
+    text-align: right !important;
+    color: hsl(var(--muted-foreground)) !important;
+    opacity: 0.5 !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .astro-code,
+    .astro-code span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg) !important;
+    }
+  }
+}

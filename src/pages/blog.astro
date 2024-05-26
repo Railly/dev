@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/base-layout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const blogPosts: CollectionEntry<"blog">[] = await getCollection("blog");
+
+type GroupedPosts = {
+  [year: number]: CollectionEntry<"blog">[];
+};
+
+const groupedPosts: GroupedPosts = blogPosts.reduce<GroupedPosts>(
+  (acc, post) => {
+    const year = new Date(post.data.date).getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(post);
+    return acc;
+  },
+  {}
+);
+---
+
+<BaseLayout
+  title="Railly Hugo's Blog"
+  description="Sharing my knowledge on Web Development, AI, and more."
+  author="Railly Hugo"
+>
+  <section class="mt-8">
+    <h1 class="text-lg font-bold">Blog</h1>
+    <p class="text-muted-foreground">
+      Insights and tutorials on Web Development, AI, and other technical topics.
+    </p>
+  </section>
+
+  <section class="mt-8">
+    <div class="space-y-8">
+      {
+        Object.entries(groupedPosts).map(([year, posts]) => (
+          <div>
+            <h3 class="text-base font-semibold text-muted-foreground">
+              {year}
+            </h3>
+            <ul class="list-none p-0 m-0">
+              {posts.map((post) => (
+                <li class="flex justify-between py-2 border-b">
+                  <a
+                    href={`/blog/${post.slug}`}
+                    class="text-base font-medium text-white"
+                  >
+                    {post.data.title}
+                  </a>
+                  <span class="text-sm text-muted-foreground">
+                    {new Date(post.data.date).toLocaleDateString()}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

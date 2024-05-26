@@ -8,7 +8,8 @@ import type {
   ThemeRegistration,
   ThemeRegistrationRaw,
 } from "shikiji";
-import oneHunterMaterial from "../../public/theme/OneHunter-Material-color-theme.json";
+import oneHunterVercel2024Light from "../../public/theme/one-hunter-vercel-light.json";
+import oneHunterVercel2024 from "../../public/theme/one-hunter-vercel-dark.json";
 
 // extend Code Props
 interface Props {
@@ -20,7 +21,7 @@ interface Props {
    *
    * @default "plaintext"
    */
-  lang: BuiltinLanguage | SpecialLanguage | LanguageRegistration;
+  lang?: BuiltinLanguage | SpecialLanguage | LanguageRegistration;
   /**
    * Multiple themes to style with -- alternative to "theme" option.
    * Supports all themes found above; see https://github.com/antfu/shikiji#lightdark-dual-themes for more information.
@@ -48,9 +49,13 @@ interface Props {
 ---
 
 <Code
+  class="border rounded-md !text-[13px]"
   code={Astro.props.code}
-  lang={Astro.props.lang}
+  lang={Astro.props.lang as any}
   wrap={Astro.props.wrap}
   inline={Astro.props.inline}
-  theme={oneHunterMaterial as any}
+  themes={{
+    light: oneHunterVercel2024Light as any,
+    dark: oneHunterVercel2024 as any,
+  }}
 />
