@@ -11,23 +11,43 @@ const tocItems: {
   const level = heading.depth;
   return { slug, text, level };
 });
+
+const getPaddingClass = (level: number): string => {
+  switch (level) {
+    case 1:
+      return "pl-2";
+    case 2:
+      return "pl-4";
+    case 3:
+      return "ml-4 pl-4 border-l-2 border-dotted border-muted-foreground/30";
+    case 4:
+      return "ml-6 pl-4 border-l-2 border-dotted border-muted-foreground/30";
+    case 5:
+      return "ml-8 pl-4 border-l-2 border-dotted border-muted-foreground/30";
+    default:
+      return "pl-2";
+  }
+};
 ---
 
-<h2 class="text-sm text-muted-foreground/70 font-bold mb-4 uppercase">
-  On this page
-</h2>
-<ul>
-  {
-    tocItems.map((item) => (
-      <li class={`pl-${item.level * 2}`}>
-        <a
-          href={`#${item.slug}`}
-          class="text-base text-muted-foreground font-medium hover:text-accent-foreground transition-colors"
-        >
-          {item.text}
-        </a>
-      </li>
-    ))
-  }
-</ul>
-<hr />
+<div class="flex max-w-xs w-full px-4 flex-col gap-2 fixed right-0 top-24">
+  <h2 class="text-xs ml-4 text-muted-foreground/70 font-medium mb-2 uppercase">
+    On this page
+  </h2>
+  <ul
+    class="prose prose-a:no-underline hover:prose-a:underline hover:prose-a:text-foreground"
+  >
+    {
+      tocItems.map((item) => (
+        <li class={getPaddingClass(item.level)}>
+          <a
+            href={`#${item.slug}`}
+            class="text-sm text-muted-foreground font-normal hover:text-accent-foreground transition-colors"
+          >
+            {item.text}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

@@ -23,14 +23,16 @@ const groupedPosts: GroupedPosts = blogPosts.reduce<GroupedPosts>(
 ---
 
 <BaseLayout
-  title="Railly Hugo's Blog"
-  description="Sharing my knowledge on Web Development, AI, and more."
+  title="Writing"
+  description="Thoughts on technology, design, and life."
   author="Railly Hugo"
+  backTitle="Index"
+  to="/"
 >
-  <section class="mt-8">
-    <h1 class="text-lg font-bold">Blog</h1>
+  <section class="mt-8 relative">
+    <h1 class="text-lg font-bold">Writing</h1>
     <p class="text-muted-foreground">
-      Insights and tutorials on Web Development, AI, and other technical topics.
+      Thoughts on technology, design, and life
     </p>
   </section>
 
@@ -47,7 +49,7 @@ const groupedPosts: GroupedPosts = blogPosts.reduce<GroupedPosts>(
                 <li class="flex justify-between py-2 border-b">
                   <a
                     href={`/blog/${post.slug}`}
-                    class="text-base font-medium text-white"
+                    class="text-base font-medium no-underline hover:underline"
                   >
                     {post.data.title}
                   </a>

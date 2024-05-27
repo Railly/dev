@@ -1,0 +1,56 @@
+---
+export interface Project {
+  title: string;
+  link: string;
+  internal?: boolean;
+  description: string;
+}
+
+export interface ProjectsProps {
+  sectionTitle: string;
+  projects: Project[];
+}
+
+const { sectionTitle, projects } = Astro.props as ProjectsProps;
+---
+
+<div>
+  <h2 class="text-base text-muted-foreground m-0 mb-4 !font-medium">
+    {sectionTitle}
+  </h2>
+  <div class="flex flex-col gap-4">
+    {
+      projects.map((project) => (
+        <div>
+          <a
+            href={project.link}
+            target={project.internal ? "_self" : "_blank"}
+            class="inline-flex group gap-1 items-center text-base font-medium m-0"
+          >
+            {project.title}
+            {!project.internal && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-move-up-right text-muted-foreground/70 group-hover:text-muted-foreground"
+              >
+                <>
+                  <path d="M13 5H19V11" />
+                  <path d="M19 5L5 19" />
+                </>
+              </svg>
+            )}
+          </a>
+          <p class="mt-2 text-accent-foreground">{project.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</div>

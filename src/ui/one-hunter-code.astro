@@ -1,51 +1,7 @@
 ---
 import { Code } from "astro:components";
-import type {
-  BuiltinLanguage,
-  BuiltinTheme,
-  LanguageRegistration,
-  SpecialLanguage,
-  ThemeRegistration,
-  ThemeRegistrationRaw,
-} from "shikiji";
 import oneHunterVercel2024Light from "../../public/theme/one-hunter-vercel-light.json";
 import oneHunterVercel2024 from "../../public/theme/one-hunter-vercel-dark.json";
-
-// extend Code Props
-interface Props {
-  code: string;
-  /**
-   * The language of your code.
-   * Supports all languages listed here: https://github.com/shikijs/shiki/blob/main/docs/languages.md#all-languages
-   * Instructions for loading a custom language: https://github.com/shikijs/shiki/blob/main/docs/languages.md#supporting-your-own-languages-with-shiki
-   *
-   * @default "plaintext"
-   */
-  lang?: BuiltinLanguage | SpecialLanguage | LanguageRegistration;
-  /**
-   * Multiple themes to style with -- alternative to "theme" option.
-   * Supports all themes found above; see https://github.com/antfu/shikiji#lightdark-dual-themes for more information.
-   */
-  experimentalThemes?: Record<
-    string,
-    BuiltinTheme | ThemeRegistration | ThemeRegistrationRaw
-  >;
-  /**
-   * Enable word wrapping.
-   *  - true: enabled.
-   *  - false: disabled.
-   *  - null: All overflow styling removed. Code will overflow the element by default.
-   *
-   * @default false
-   */
-  wrap?: boolean | null;
-  /**
-   * Generate inline code element only, without the pre element wrapper.
-   *
-   * @default false
-   */
-  inline?: boolean;
-}
 ---
 
 <Code

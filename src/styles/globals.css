@@ -88,6 +88,11 @@
       #555555,
       #717171
     );
+    --blur: 5px; /* Adjust blur intensity */
+    --transparent: rgba(0, 0, 0, 0); /* Transparent color for gradient */
+    --mask-visible: rgba(0, 0, 0, 1); /* Mask visible color */
+    --mask-hidden: rgba(0, 0, 0, 0); /* Mask hidden color */
+    --page-top: 60px; /* Example page top height */
   }
 }
 
@@ -95,7 +100,9 @@
   * {
     @apply border-border;
     scrollbar-color: hsl(var(--flexoki-tx-2) / 0.5) hsl(var(--flexoki-ui) / 0.5);
+    scrollbar-gutter: stable;
   }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -136,5 +143,71 @@
       color: var(--shiki-dark) !important;
       background-color: var(--shiki-dark-bg) !important;
     }
+  }
+
+  .dotted-background {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Adjust as needed */
+    background-color: hsl(var(--flexoki-bg)); /* Background color */
+    background-image: radial-gradient(
+      hsl(var(--flexoki-bg-2)) 1px,
+      transparent 1px
+    );
+    background-size: 20px 20px; /* Adjust dot spacing as needed */
+  }
+  .grid-background {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Adjust as needed */
+    background: linear-gradient(
+        to right,
+        hsl(var(--flexoki-bg-2)) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, hsl(var(--flexoki-bg-2)) 1px, transparent 1px);
+    background-size: 20px 20px; /* Adjust grid size as needed */
+    background-color: hsl(var(--flexoki-bg));
+  }
+
+  .top-blur {
+    position: relative;
+    user-select: none;
+    pointer-events: none;
+    --h: min(96px, var(--page-top));
+    position: sticky;
+    width: 100%;
+    height: var(--h);
+    z-index: 1;
+    backdrop-filter: blur(var(--blur));
+    opacity: 0.95;
+    mask-image: linear-gradient(
+      var(--direction),
+      var(--mask-visible) 25%,
+      var(--mask-hidden)
+    );
+  }
+
+  .top-blur:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      var(--direction),
+      var(--background),
+      var(--transparent)
+    );
+  }
+
+  .top-blur:first-child {
+    margin-bottom: calc(-1 * var(--h));
+    top: 0;
+    --direction: to bottom;
+  }
+
+  .top-blur:last-child {
+    margin-top: calc(-1 * var(--h));
+    bottom: 0;
+    --direction: to top;
   }
 }

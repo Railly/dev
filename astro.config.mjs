@@ -15,7 +15,6 @@ export default defineConfig({
         light: oneHunterThemeVercelLight2024,
         dark: oneHunterThemeVercelDark2024,
       },
-      cssVariablePrefix: "--shiki-",
       defaultColor: "light",
       cssVariablePrefix: "--shiki-",
       langs: [],

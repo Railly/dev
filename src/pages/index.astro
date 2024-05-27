@@ -1,5 +1,46 @@
 ---
-import BaseLayout from "../layouts/base-layout.astro";
+import Header from "@/components/Header.astro";
+import CurrentWork from "@/components/CurrentWork.astro";
+import Projects from "@/components/Projects.astro";
+import Explore from "@/components/Explore.astro";
+import BaseLayout from "@/layouts/base-layout.astro";
+
+const buildingProjects = [
+  {
+    title: "Tensor",
+    link: "/tensor",
+    description: "Documenting my AI/ML journey",
+    internal: true,
+  },
+  {
+    title: "Crafter Station",
+    link: "https://crafter-station.com",
+    description: "Digital lab for crafting new ideas and projects",
+  },
+  {
+    title: "Semantik",
+    link: "https://semantik.studio",
+    description: "AI-powered studio for databases and APIs",
+  },
+];
+
+const openSourceProjects = [
+  {
+    title: "One Hunter Theme",
+    link: "https://marketplace.visualstudio.com/items?itemName=RaillyHugo.one-hunter",
+    description: "VS Code theme inspired by Vercel and Flexoki",
+  },
+  {
+    title: "shadcn/ui customizer",
+    link: "https://shadcn-ui-customizer.vercel.app",
+    description: "Tune your shadcn/ui themes with color pickers",
+  },
+  {
+    title: "Obsidian Simple Flashcards",
+    link: "https://github.com/Railly/obsidian-simple-flashcards",
+    description: "Turn fenced code blocks into flashcards in Obsidian",
+  },
+];
 ---
 
 <BaseLayout
@@ -7,150 +48,13 @@ import BaseLayout from "../layouts/base-layout.astro";
   description="Software Engineer and AI enthusiast. Building developer tools and open source projects."
   author="Railly Hugo"
 >
-  <section class="flex gap-1 items-center">
-    <h1 class="text-lg font-medium m-0">Railly Hugo</h1>
-    <p class="m-0">~</p>
-    <h2 class="text-lg font-medium m-0">Hunter</h2>
-  </section>
-  <section class="inline-flex gap-1 items-center">
-    <h3 class="text-lg !font-medium m-0 text-muted-foreground">
-      Software Engineer
-    </h3>
-    <p class="m-0">~</p>
-    <h4 class="hidden md:block text-lg !font-medium m-0 text-muted-foreground">
-      Pursuing a MS in AI
-    </h4>
-    <h4 class="md:hidden text-lg !font-medium m-0 text-muted-foreground">
-      MS in AI
-    </h4>
-  </section>
-  <!-- <p class="mt-2">Leaving a footprint for humanity</p> -->
-
-  <section class="mt-8">
-    <h2 class="text-base !font-medium text-muted-foreground mt-0">Present</h2>
-    <p>
-      I work as a full-stack engineer at
-      <a href="https://www.globant.com/" target="_blank">Globant</a>
-      , contributing to Disney O&I Engineering Team. <br /> I like to build developer
-      tools for myself and make them open source for the community.
-    </p>
-  </section>
-
+  <Header />
+  <CurrentWork />
   <section class="mt-8 max-w-screen overflow-x-auto">
     <div class="grid grid-cols-3 gap-6 w-[600px] md:w-full">
-      <div>
-        <h2 class="text-base text-muted-foreground m-0 mb-4 !font-medium">
-          Building
-        </h2>
-        <div class="flex flex-col gap-4">
-          <div>
-            <a
-              href="https://crafter-station.com"
-              target="_blank"
-              class="text-base font-medium m-0">Crafter Station</a
-            >
-            <p class="mt-2 text-accent-foreground">
-              Digital lab for crafting new ideas and projects
-            </p>
-          </div>
-          <div>
-            <div>
-              <a
-                href="https://semantik.studio"
-                target="_blank"
-                class="text-base font-medium m-0">Semantik</a
-              >
-              <p class="mt-2 text-accent-foreground">
-                AI-powered studio for databases and APIs
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h2 class="text-base text-muted-foreground m-0 mb-4 !font-medium">
-          Open Source
-        </h2>
-        <div class="flex flex-col gap-4">
-          <div>
-            <a
-              href="https://marketplace.visualstudio.com/items?itemName=RaillyHugo.one-hunter"
-              target="_blank"
-              class="text-base font-medium m-0">One Hunter Theme</a
-            >
-            <p class="mt-2 text-accent-foreground">
-              VS Code theme inspired by Vercel and Flexoki
-            </p>
-          </div>
-          <div>
-            <div>
-              <a
-                href="https://shadcn-ui-customizer.vercel.app"
-                class="text-base font-medium m-0">shadcn/ui customizer</a
-              >
-              <p class="mt-2 text-accent-foreground">
-                Tune your shadcn/ui themes with color pickers
-              </p>
-            </div>
-          </div>
-          <div>
-            <a
-              href="https://github.com/Railly/obsidian-simple-flashcards"
-              class="text-base font-medium m-0">Obsidian Simple Flashcards</a
-            >
-            <p class="mt-2 text-accent-foreground">
-              Turn fenced code blocks into flashcards in Obsidian
-            </p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h2 class="text-base text-muted-foreground m-0 mb-4 !font-medium">
-          Explore
-        </h2>
-        <div class="flex flex-col gap-4">
-          <div>
-            <a href="/blog" class="text-base font-medium m-0">Technical Blog</a>
-            <p class="mt-2 text-accent-foreground">
-              Sharing my knowledge on Web Development and AI
-            </p>
-          </div>
-          <div>
-            <div>
-              <a href="/marketplace" class="text-base font-medium m-0">
-                Marketplace
-              </a>
-              <p class="mt-2 text-accent-foreground">
-                Discover and support my projects
-              </p>
-            </div>
-          </div>
-          <div>
-            <p class="text-base font-bold m-0">Social Media</p>
-            <div class="flex gap-2 mt-2">
-              <a
-                href="https://x.com/raillyhugo"
-                target="_blank"
-                class="text-accent-foreground font-bold">𝕏</a
-              >
-              ,
-              <a
-                href="https://linkedin.com/in/railly-hugo"
-                target="_blank"
-                class="text-accent-foreground">LinkedIn</a
-              >
-              ,
-              <a
-                href="https://github.com/Railly"
-                target="_blank"
-                class="text-accent-foreground"
-              >
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Projects sectionTitle="Building" projects={buildingProjects} />
+      <Projects sectionTitle="Open Source" projects={openSourceProjects} />
+      <Explore />
     </div>
   </section>
 </BaseLayout>

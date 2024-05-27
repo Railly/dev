@@ -1,50 +1,79 @@
 ---
-import TOC from "@/components/TOC.astro";
 import BaseLayout from "../layouts/base-layout.astro";
 
 const { title, description, date, image, headings } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} author="Railly Hugo">
-  <!-- Back button -->
-  <a
-    href="/blog"
-    class="text-muted-foreground items-center inline-flex gap-2 mb-4"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-move-left"
-      ><path d="M6 8L2 12L6 16"></path><path d="M2 12H22"></path></svg
-    >
-    Back
-  </a>
-  <div class="relative bg-card text-card-foreground p-8 rounded-lg shadow-lg">
-    {
-      image && (
-        <img
-          src={image}
-          alt={title}
-          class="absolute inset-0 w-full h-full object-cover opacity-20 rounded-lg m-0"
-        />
-      )
-    }
-    <div class="relative z-10">
-      <h1 class="text-4xl font-bold">{title}</h1>
-      <p class="text-lg mt-2">{description}</p>
-      <p class="text-sm mt-1 text-muted-foreground">{date}</p>
-    </div>
-  </div>
+<BaseLayout
+  title={title}
+  description={description}
+  author="Railly Hugo"
+  backTitle="Writing"
+  to="/writing"
+  headings={headings}
+>
   <section class="mt-8 flex">
     <div class="prose dark:prose-invert mx-auto w-full">
+      <h2 class="font-bold m-0">{title}</h2>
+      <p class="text-sm mt-2 mb-8 text-muted-foreground">{date}</p>
+      <hr class="mt-0 mb-6" />
       <slot />
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    codeBlocks.forEach((codeBlock) => {
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("relative");
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "group absolute right-2 top-2 overflow-hidden rounded-full border border-muted hover:border-border py-1 px-2 text-xs font-medium backdrop-blur transition focus:opacity-100";
+      copyButton.innerHTML = `
+        <span class="pointer-events-none flex items-center gap-1 text-zinc-400 transition duration-300">
+          <svg viewBox="0 0 20 20" aria-hidden="true" class="h-5 w-5 fill-zinc-500/20 stroke-zinc-500 transition-colors group-hover:stroke-zinc-400">
+            <path stroke-width="0" d="M5.5 13.5v-5a2 2 0 0 1 2-2l.447-.894A2 2 0 0 1 9.737 4.5h.527a2 2 0 0 1 1.789 1.106l.447.894a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2Z"></path>
+            <path fill="none" stroke-linejoin="round" d="M12.5 6.5a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2m5 0-.447-.894a2 2 0 0 0-1.79-1.106h-.527a2 2 0 0 0-1.789 1.106L7.5 6.5m5 0-1 1h-3l-1-1"></path>
+          </svg>
+          <span class="pointer-events-none">${copyButtonLabel}</span>
+        </span>
+        <span aria-hidden="true" class="copied-message pointer-events-none absolute inset-0 left-8 flex items-center justify-center transition duration-300 translate-y-1.5 opacity-0">Copied!</span>
+      `;
+
+      codeBlock.setAttribute("tabindex", "0");
+      wrapper.appendChild(copyButton);
+      codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    });
+
+    async function copyCode(block: HTMLElement, button: HTMLButtonElement) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text || "");
+
+      const copyButton = button.querySelector("span:last-child");
+      const copiedMessage = button.querySelector(".copied-message");
+      copiedMessage?.classList.add("translate-y-0", "opacity-100");
+      copyButton?.classList.add(
+        "translate-y-1",
+        "opacity-0",
+        "transition-opacity",
+        "opacity-0"
+      );
+      setTimeout(() => {
+        copiedMessage?.classList.remove("opacity-100");
+        copyButton?.classList.remove("translate-y-1", "opacity-0");
+      }, 700);
+    }
+  });
+</script>

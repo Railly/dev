@@ -1,4 +1,6 @@
 ---
+import BackTo from "@/components/BackTo.astro";
+import TOC from "@/components/TOC.astro";
 import "@/styles/globals.css";
 import "@fontsource-variable/figtree";
 
@@ -6,9 +8,12 @@ interface Props {
   title: string;
   description: string;
   author: string;
+  backTitle?: string;
+  to?: string;
+  headings?: string;
 }
 
-const { title, description, author } = Astro.props;
+const { title, description, author, backTitle, to, headings } = Astro.props;
 ---
 
 <script is:inline>
@@ -61,13 +66,17 @@ const { title, description, author } = Astro.props;
     <link rel="stylesheet" href="../styles/computer-modern/sans.css" />
     <link rel="stylesheet" href="../styles/computer-modern/serif.css" />
     <link rel="stylesheet" href="../styles/computer-modern/typewriter.css" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={author} />
   </head>
-  <body class="">
+  <body class="dotted-background min-w-screen h-full">
+    <div class="top-blur"></div>
+    {backTitle && to && <BackTo title={backTitle} to={to} />}
+    {headings && <TOC headings={headings} />}
     <main
-      class="dark:selection:bg-stone-800 selection:bg-muted prose prose-p:text-foreground dark:prose-invert font-sans mx-auto my-12 max-w-[768px] px-6 antialiased sm:my-32 md:my-16 prose-headings:font-semibold prose-a:decoration-muted-foreground/30 dark:prose-a:decoration-muted-foreground/70 prose-a:underline-offset-2 hover:prose-a:decoration-muted-foreground/70 dark:hover:prose-a:decoration-muted-foreground transition-colors duration-500 prose-hr:border-border"
+      class="dark:selection:bg-stone-800 selection:bg-muted prose prose-p:text-foreground dark:prose-invert font-sans mx-auto my-12 max-w-[768px] px-6 antialiased sm:my-32 md:my-16 prose-headings:font-semibold prose-a:decoration-muted-foreground/30 dark:prose-a:decoration-muted-foreground/70 prose-a:underline-offset-2 hover:prose-a:decoration-muted-foreground/70 dark:hover:prose-a:decoration-muted-foreground transition-colors duration-500 prose-hr:border-border prose-blockquote:border-foreground/70"
     >
       <slot />
     </main>
