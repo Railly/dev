@@ -143,10 +143,7 @@ export const GET: APIRoute = async ({ params }) => {
       {
         name: "Figtree",
         data: fs.readFileSync(
-          path.join(
-            __dirname,
-            "../../../../output/static/fonts/figtree/figtree-latin-500-normal.ttf"
-          )
+          path.join(__dirname, "../../../fonts/figtree-latin-500-normal.ttf")
         ),
         style: "normal",
         weight: 500,
@@ -154,10 +151,7 @@ export const GET: APIRoute = async ({ params }) => {
       {
         name: "Figtree",
         data: fs.readFileSync(
-          path.join(
-            __dirname,
-            "../../../../output/static/fonts/figtree/figtree-latin-600-normal.ttf"
-          )
+          path.join(__dirname, "../../../fonts/figtree-latin-600-normal.ttf")
         ),
         style: "normal",
         weight: 600,
@@ -165,10 +159,7 @@ export const GET: APIRoute = async ({ params }) => {
       {
         name: "Figtree",
         data: fs.readFileSync(
-          path.join(
-            __dirname,
-            "../../../../output/static/fonts/figtree/figtree-latin-700-normal.ttf"
-          )
+          path.join(__dirname, "../../../fonts/figtree-latin-700-normal.ttf")
         ),
         style: "normal",
         weight: 700,
