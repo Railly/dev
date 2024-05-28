@@ -145,7 +145,7 @@ export const GET: APIRoute = async ({ params }) => {
         data: fs.readFileSync(
           path.join(
             __dirname,
-            "../../../../public/fonts/figtree/figtree-latin-500-normal.ttf"
+            "../../../../output/static/fonts/figtree/figtree-latin-500-normal.ttf"
           )
         ),
         style: "normal",
@@ -156,7 +156,7 @@ export const GET: APIRoute = async ({ params }) => {
         data: fs.readFileSync(
           path.join(
             __dirname,
-            "../../../../public/fonts/figtree/figtree-latin-600-normal.ttf"
+            "../../../../output/static/fonts/figtree/figtree-latin-600-normal.ttf"
           )
         ),
         style: "normal",
@@ -167,7 +167,7 @@ export const GET: APIRoute = async ({ params }) => {
         data: fs.readFileSync(
           path.join(
             __dirname,
-            "../../../../public/fonts/figtree/figtree-latin-700-normal.ttf"
+            "../../../../output/static/fonts/figtree/figtree-latin-700-normal.ttf"
           )
         ),
         style: "normal",
