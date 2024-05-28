@@ -1,9 +1,6 @@
 import { ImageResponse } from "@vercel/og";
 import type { APIRoute } from "astro";
 import { getCollection, getEntry } from "astro:content";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
 
 export const GET: APIRoute = async ({ params }) => {
   const { slug } = params;
@@ -12,8 +9,6 @@ export const GET: APIRoute = async ({ params }) => {
   if (!post) {
     return new Response("Not found", { status: 404 });
   }
-
-  const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
   const html = {
     type: "div",
@@ -136,30 +131,41 @@ export const GET: APIRoute = async ({ params }) => {
     },
   };
 
+  const loadFont = async (fontPath: string) => {
+    console.log({
+      newURL: new URL(fontPath, import.meta.url),
+    });
+    const response = await fetch(new URL(fontPath, import.meta.url));
+    if (!response.ok) {
+      throw new Error(`Failed to load font from ${fontPath}`);
+    }
+    return response.arrayBuffer();
+  };
+
   return new ImageResponse(html, {
     width: 800,
     height: 400,
     fonts: [
       {
         name: "Figtree",
-        data: fs.readFileSync(
-          path.join(__dirname, "../../../fonts/figtree-latin-500-normal.ttf")
+        data: await loadFont(
+          "../../../assets/figtree/figtree-latin-500-normal.ttf"
         ),
         style: "normal",
         weight: 500,
       },
       {
         name: "Figtree",
-        data: fs.readFileSync(
-          path.join(__dirname, "../../../fonts/figtree-latin-600-normal.ttf")
+        data: await loadFont(
+          "../../../assets/figtree/figtree-latin-600-normal.ttf"
         ),
         style: "normal",
         weight: 600,
       },
       {
         name: "Figtree",
-        data: fs.readFileSync(
-          path.join(__dirname, "../../../fonts/figtree-latin-700-normal.ttf")
+        data: await loadFont(
+          "../../../assets/figtree/figtree-latin-700-normal.ttf"
         ),
         style: "normal",
         weight: 700,
@@ -168,7 +174,6 @@ export const GET: APIRoute = async ({ params }) => {
   });
 };
 
-// Generate static paths for all blog posts
 export async function getStaticPaths() {
   const blogPosts = await getCollection("writing");
   return blogPosts.map((post) => ({
