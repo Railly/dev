@@ -11,9 +11,16 @@ interface Props {
   backTitle?: string;
   to?: string;
   headings?: string;
+  ogImage?: string;
 }
 
-const { title, description, author, backTitle, to, headings } = Astro.props;
+const { title, description, author, backTitle, to, headings, ogImage } =
+  Astro.props;
+
+const ogImageUrl = ogImage
+  ? `${import.meta.env.SITE}${ogImage}`
+  : `${import.meta.env.SITE}/favicon.svg`;
+console.log(ogImageUrl);
 ---
 
 <script is:inline>
@@ -70,6 +77,25 @@ const { title, description, author, backTitle, to, headings } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={author} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={author} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@raillyhugo" />
+    <meta name="twitter:creator" content="@raillyhugo" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={title} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="robots" content="follow, index" />
+    <meta name="googlebot" content="follow, index" />
+    <meta property="og:image" content={`${import.meta.env.SITE}${ogImage}`} />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="400" />
   </head>
   <body class="dotted-background min-w-screen h-full">
     <div class="top-blur"></div>

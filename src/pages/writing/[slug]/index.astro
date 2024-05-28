@@ -1,26 +1,28 @@
 ---
-import BlogLayout from "@/layouts/blog-layout.astro";
+import WritingLayout from "@/layouts/writing-layout.astro";
 import { getEntry, getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const blogPosts: CollectionEntry<"blog">[] = await getCollection("blog");
+  const blogPosts: CollectionEntry<"writing">[] =
+    await getCollection("writing");
   return blogPosts.map((post) => ({
     params: { slug: post.slug },
   }));
 }
 
 const { slug } = Astro.params;
-const post = await getEntry("blog", slug);
+const post = await getEntry("writing", slug);
 const { Content, headings } = await post.render();
 ---
 
-<BlogLayout
+<WritingLayout
   title={post.data.title}
   description={post.data.excerpt}
   date={post.data.date}
   image={post.data.image}
+  slug={slug}
   headings={headings}
 >
   <Content />
-</BlogLayout>
+</WritingLayout>

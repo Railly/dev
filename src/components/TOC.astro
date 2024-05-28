@@ -30,7 +30,9 @@ const getPaddingClass = (level: number): string => {
 };
 ---
 
-<div class="flex max-w-xs w-full px-4 flex-col gap-2 fixed right-0 top-24">
+<div
+  class="hidden md:flex max-w-xs w-full px-4 flex-col gap-2 fixed right-0 top-24"
+>
   <h2 class="text-xs ml-4 text-muted-foreground/70 font-medium mb-2 uppercase">
     On this page
   </h2>
@@ -38,16 +40,19 @@ const getPaddingClass = (level: number): string => {
     class="prose prose-a:no-underline hover:prose-a:underline hover:prose-a:text-foreground"
   >
     {
-      tocItems.map((item) => (
-        <li class={getPaddingClass(item.level)}>
-          <a
-            href={`#${item.slug}`}
-            class="text-sm text-muted-foreground font-normal hover:text-accent-foreground transition-colors"
-          >
-            {item.text}
-          </a>
-        </li>
-      ))
+      tocItems.map((item) => {
+        if (item.level > 2) return null;
+        return (
+          <li class={getPaddingClass(item.level)}>
+            <a
+              href={`#${item.slug}`}
+              class="text-sm text-muted-foreground font-normal hover:text-accent-foreground transition-colors"
+            >
+              {item.text}
+            </a>
+          </li>
+        );
+      })
     }
   </ul>
 </div>

@@ -2,8 +2,10 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import oneHunterThemeVercelLight2024 from "./public/theme/one-hunter-vercel-light.json";
 import oneHunterThemeVercelDark2024 from "./public/theme/one-hunter-vercel-dark.json";
+import vercel from "@astrojs/vercel/serverless";
 
 export default defineConfig({
+  site: "https://www.railly.dev",
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -28,4 +30,6 @@ export default defineConfig({
       ],
     },
   },
+  output: "server",
+  adapter: vercel(),
 });

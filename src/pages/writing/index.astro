@@ -1,12 +1,12 @@
 ---
-import BaseLayout from "../layouts/base-layout.astro";
+import BaseLayout from "@/layouts/base-layout.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
-const blogPosts: CollectionEntry<"blog">[] = await getCollection("blog");
+const blogPosts: CollectionEntry<"writing">[] = await getCollection("writing");
 
 type GroupedPosts = {
-  [year: number]: CollectionEntry<"blog">[];
+  [year: number]: CollectionEntry<"writing">[];
 };
 
 const groupedPosts: GroupedPosts = blogPosts.reduce<GroupedPosts>(
@@ -28,6 +28,7 @@ const groupedPosts: GroupedPosts = blogPosts.reduce<GroupedPosts>(
   author="Railly Hugo"
   backTitle="Index"
   to="/"
+  ogImage="/images/writing-og.png"
 >
   <section class="mt-8 relative">
     <h1 class="text-lg font-bold">Writing</h1>
@@ -48,7 +49,7 @@ const groupedPosts: GroupedPosts = blogPosts.reduce<GroupedPosts>(
               {posts.map((post) => (
                 <li class="flex justify-between py-2 border-b">
                   <a
-                    href={`/blog/${post.slug}`}
+                    href={`/writing/${post.slug}`}
                     class="text-base font-medium no-underline hover:underline"
                   >
                     {post.data.title}

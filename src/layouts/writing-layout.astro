@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/base-layout.astro";
 
-const { title, description, date, image, headings } = Astro.props;
+const { title, description, date, image, slug, headings } = Astro.props;
 ---
 
 <BaseLayout
@@ -11,6 +11,7 @@ const { title, description, date, image, headings } = Astro.props;
   backTitle="Writing"
   to="/writing"
   headings={headings}
+  ogImage={"/writing/" + slug + "/og.png"}
 >
   <section class="mt-8 flex">
     <div class="prose dark:prose-invert mx-auto w-full">
