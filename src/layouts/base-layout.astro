@@ -24,8 +24,6 @@ const ogImageUrl = ogImage
 console.log(ogImageUrl);
 ---
 
-<CounterscaleScript />
-
 <script is:inline>
   const getThemePreference = () => {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
@@ -108,6 +106,7 @@ console.log(ogImageUrl);
       class="dark:selection:bg-stone-800 selection:bg-muted prose prose-p:text-foreground dark:prose-invert font-sans mx-auto my-12 max-w-[768px] px-6 antialiased sm:my-32 md:my-16 prose-headings:font-semibold prose-a:decoration-muted-foreground/30 dark:prose-a:decoration-muted-foreground/70 prose-a:underline-offset-2 hover:prose-a:decoration-muted-foreground/70 dark:hover:prose-a:decoration-muted-foreground transition-colors duration-500 prose-hr:border-border prose-blockquote:border-foreground/70"
     >
       <slot />
+      <CounterscaleScript />
     </main>
     <!-- <Footer /> -->
   </body>
