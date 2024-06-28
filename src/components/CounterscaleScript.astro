@@ -1,0 +1,14 @@
+---
+
+---
+
+<script is:inline define:vars={{ siteId: "railly.dev" }}>
+  (function () {
+    window.counterscale = {
+      q: [["set", "siteId", siteId], ["trackPageview"]],
+    };
+  })();
+</script>
+
+<script src="https://counterscale.raillyhugo.workers.dev/tracker.js" async defer
+></script>

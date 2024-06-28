@@ -1,5 +1,6 @@
 ---
 import BackTo from "@/components/BackTo.astro";
+import CounterscaleScript from "@/components/CounterscaleScript.astro";
 import TOC from "@/components/TOC.astro";
 import "@/styles/globals.css";
 import "@fontsource-variable/figtree";
@@ -22,6 +23,8 @@ const ogImageUrl = ogImage
   : `${import.meta.env.SITE}/favicon.svg`;
 console.log(ogImageUrl);
 ---
+
+<CounterscaleScript />
 
 <script is:inline>
   const getThemePreference = () => {

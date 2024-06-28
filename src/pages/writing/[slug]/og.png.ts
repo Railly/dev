@@ -149,7 +149,7 @@ export const GET: APIRoute = async ({ params }) => {
       {
         name: "Figtree",
         data: await loadFont(
-          "../../../assets/figtree/figtree-latin-500-normal.ttf"
+          "../../assets/figtree/figtree-latin-500-normal.ttf"
         ),
         style: "normal",
         weight: 500,
@@ -157,7 +157,7 @@ export const GET: APIRoute = async ({ params }) => {
       {
         name: "Figtree",
         data: await loadFont(
-          "../../../assets/figtree/figtree-latin-600-normal.ttf"
+          "../../assets/figtree/figtree-latin-600-normal.ttf"
         ),
         style: "normal",
         weight: 600,
@@ -165,7 +165,7 @@ export const GET: APIRoute = async ({ params }) => {
       {
         name: "Figtree",
         data: await loadFont(
-          "../../../assets/figtree/figtree-latin-700-normal.ttf"
+          "../../assets/figtree/figtree-latin-700-normal.ttf"
         ),
         style: "normal",
         weight: 700,
