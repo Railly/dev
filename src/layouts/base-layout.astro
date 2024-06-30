@@ -97,6 +97,7 @@ console.log(ogImageUrl);
     <meta property="og:image:alt" content={title} />
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="400" />
+    <CounterscaleScript />
   </head>
   <body class="dotted-background min-w-screen h-full">
     <div class="top-blur"></div>
@@ -106,7 +107,6 @@ console.log(ogImageUrl);
       class="dark:selection:bg-stone-800 selection:bg-muted prose prose-p:text-foreground dark:prose-invert font-sans mx-auto my-12 max-w-[768px] px-6 antialiased sm:my-32 md:my-16 prose-headings:font-semibold prose-a:decoration-muted-foreground/30 dark:prose-a:decoration-muted-foreground/70 prose-a:underline-offset-2 hover:prose-a:decoration-muted-foreground/70 dark:hover:prose-a:decoration-muted-foreground transition-colors duration-500 prose-hr:border-border prose-blockquote:border-foreground/70"
     >
       <slot />
-      <CounterscaleScript />
     </main>
     <!-- <Footer /> -->
   </body>
