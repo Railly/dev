@@ -2,10 +2,10 @@
 
 ---
 
-<script is:inline define:vars={{ siteId: "railly.dev" }}>
+<script is:inline id="counterscale-init">
   (function () {
     window.counterscale = {
-      q: [["set", "siteId", siteId], ["trackPageview"]],
+      q: [["set", "siteId", "railly.dev"], ["trackPageview"]],
     };
   })();
 </script>
@@ -13,5 +13,4 @@
 <script
   is:inline
   src="https://counterscale.raillyhugo.workers.dev/tracker.js"
-  async
-  defer></script>
+  id="counterscale-script"></script>
