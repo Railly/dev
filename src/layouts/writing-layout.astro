@@ -13,14 +13,10 @@ const { title, description, date, image, slug, headings } = Astro.props;
   headings={headings}
   ogImage={"/writing/" + slug + "/og.png"}
 >
-  <section class="mt-8 flex">
-    <div class="prose dark:prose-invert mx-auto w-full">
-      <h2 class="font-bold m-0">{title}</h2>
-      <p class="text-sm mt-2 mb-8 text-muted-foreground">{date}</p>
-      <hr class="mt-0 mb-6" />
-      <slot />
-    </div>
-  </section>
+  <h2 class="font-bold m-0">{title}</h2>
+  <p class="text-sm mt-2 mb-8 text-muted-foreground">{date}</p>
+  <hr class="mt-0 mb-6" />
+  <slot />
 </BaseLayout>
 
 <script>

@@ -1,5 +1,8 @@
 import { defineConfig } from "astro/config";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 import tailwind from "@astrojs/tailwind";
+import mdx from "@astrojs/mdx";
 import oneHunterThemeVercelLight2024 from "./public/theme/one-hunter-vercel-light.json";
 import oneHunterThemeVercelDark2024 from "./public/theme/one-hunter-vercel-dark.json";
 import vercel from "@astrojs/vercel/serverless";
@@ -9,6 +12,10 @@ export default defineConfig({
   integrations: [
     tailwind({
       applyBaseStyles: false,
+    }),
+    mdx({
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [rehypeKatex],
     }),
   ],
   markdown: {

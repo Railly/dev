@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "@/layouts/base-layout.astro";
+import JourneyTimeline from '../components/JourneyTimeline.astro';
+import ProjectShowcase from '../components/ProjectShowcase.astro';
 ---
 
 <BaseLayout
-  title="Logit"
-  description="Where technology, education, and creativity converge."
+  title="Logit" 
+  description="My Low Level + Math Journey"
   author="Railly Hugo"
   backTitle="Index"
   to="/"
@@ -14,21 +16,13 @@ import BaseLayout from "@/layouts/base-layout.astro";
     <div class="content">
       <h1 class="text-lg">Welcome to Logit</h1>
       <p>
-        Documenting my AI/ML growth journey. <br /> Sharing my learning process,
+        Documenting my Low Level + Math Journey. <br /> Sharing my learning process,
         resources, and creating open-source projects.
       </p>
     </div>
   </section>
-
-  <!-- <article class="border grid-background p-6 h-full">
-    <h2 class="text-2xl font-bold py-4 m-0 font-concrete">
-      CS 181: Machine Learning (2024)
-    </h2>
-    <h3
-      class="text-lg inline-flex gap-2 font-semibold font-concrete text-foreground"
-    >
-      <span class="h-max"> Harvard's Machine Learning Course </span>
-      <img src="/images/harvard.png" alt="Harvard Logo" class="w-8 h-8 m-0" />
-    </h3>
-  </article> -->
+  <section class="grid grid-cols-1 gap-5 md:grid-cols-2 mt-8">
+    <ProjectShowcase />
+    <JourneyTimeline />
+  </section
 </BaseLayout>

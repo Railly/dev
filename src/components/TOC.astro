@@ -1,58 +1,71 @@
 ---
+// TOC.astro
+import TocItem from "./TocItem.astro"
 const { headings } = Astro.props;
 
-const tocItems: {
+interface TocItem {
   slug: string;
   text: string;
   level: number;
-}[] = headings.map((heading: { slug: string; text: string; depth: number }) => {
-  const slug = heading.slug;
-  const text = heading.text;
-  const level = heading.depth;
-  return { slug, text, level };
-});
+  children: TocItem[];
+}
 
-const getPaddingClass = (level: number): string => {
-  switch (level) {
-    case 1:
-      return "pl-2";
-    case 2:
-      return "pl-4";
-    case 3:
-      return "ml-4 pl-4 border-l-2 border-dotted border-muted-foreground/30";
-    case 4:
-      return "ml-6 pl-4 border-l-2 border-dotted border-muted-foreground/30";
-    case 5:
-      return "ml-8 pl-4 border-l-2 border-dotted border-muted-foreground/30";
-    default:
-      return "pl-2";
-  }
+const buildTocTree = (items: TocItem[]): TocItem[] => {
+  const tree: TocItem[] = [];
+  const stack: TocItem[] = [];
+
+  items.forEach(item => {
+    while (stack.length > 0 && stack[stack.length - 1].level >= item.level) {
+      stack.pop();
+    }
+
+    if (stack.length > 0) {
+      stack[stack.length - 1].children.push(item);
+    } else {
+      tree.push(item);
+    }
+
+    stack.push(item);
+  });
+
+  return tree;
 };
+
+const tocItems: TocItem[] = headings.map((heading: { slug: string; text: string; depth: number }) => ({
+  slug: heading.slug,
+  text: heading.text,
+  level: heading.depth,
+  children: []
+}));
+
+const tocTree = buildTocTree(tocItems);
 ---
 
-<div
-  class="hidden md:flex max-w-xs w-full px-4 flex-col gap-2 fixed right-0 top-24"
->
-  <h2 class="text-xs ml-4 text-muted-foreground/70 font-medium mb-2 uppercase">
-    On this page
-  </h2>
-  <ul
-    class="prose prose-a:no-underline hover:prose-a:underline hover:prose-a:text-foreground"
-  >
-    {
-      tocItems.map((item) => {
-        if (item.level > 2) return null;
-        return (
-          <li class={getPaddingClass(item.level)}>
-            <a
-              href={`#${item.slug}`}
-              class="text-sm text-muted-foreground font-normal hover:text-accent-foreground transition-colors"
-            >
-              {item.text}
-            </a>
-          </li>
-        );
-      })
-    }
+<nav class="toc border rounded-sm p-2">
+  <h2 class="text-sm font-semibold mb-3 text-foreground">Table of Contents</h2>
+  <ul class="space-y-2">
+    {tocTree.map((item, index) => (
+      <TocItem item={item} index={index} />
+    ))}
   </ul>
-</div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleButtons = document.querySelectorAll('.js-toc-toggle');
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const index = button.getAttribute('data-index');
+        const submenu = document.querySelector(`.js-toc-submenu[data-index="${index}"]`);
+        const svg = button.querySelector('svg');
+        const link = button.nextElementSibling;
+        
+        if (submenu) {
+          submenu.classList.toggle('hidden');
+          svg?.classList.toggle('rotate-180');
+          link?.classList.toggle('underline');
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,47 @@
+---
+title: "Introduction to MDX"
+date: "2024-08-12"
+author: "Jane Doe"
+tags: ["mdx", "react", "markdown"]
+excerpt: "Explore the power of MDX - a format that combines Markdown simplicity with React component flexibility."
+slug: "introduction-to-mdx"
+---
+
+import BlogCard from '../../components/BlogCard.astro';
+
+# Introduction to MDX
+
+MDX is a powerful format that lets you seamlessly write JSX in your Markdown documents. It's the perfect combination of markup and components.
+
+## What is MDX?
+
+MDX allows you to use Markdown's terse syntax (such as # heading) for your content and import React components to render them within your Markdown.
+
+### Benefits of MDX
+
+1. **Flexibility**: Write in Markdown, use React components.
+2. **Reusability**: Create and reuse components across your documentation.
+3. **Developer-friendly**: Familiar syntax for both content writers and developers.
+
+## Example
+
+Here's an example of how we can use our custom BlogCard component in MDX:
+
+<BlogCard post={{
+  slug: "example-post",
+  data: {
+    title: "Example Post",
+    excerpt: "This is an example of how you can use custom components in MDX.",
+  }
+}} />
+
+## Code Blocks
+
+MDX supports syntax highlighting in code blocks:
+
+```javascript
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet('MDX User'));

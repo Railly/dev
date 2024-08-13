@@ -89,7 +89,6 @@ console.log(ogImageUrl);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={title} />
-    <meta name="theme-color" content="#ffffff" />
     <meta name="color-scheme" content="light dark" />
     <meta name="robots" content="follow, index" />
     <meta name="googlebot" content="follow, index" />
@@ -98,16 +97,37 @@ console.log(ogImageUrl);
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="400" />
   </head>
-  <body class="dotted-background min-w-screen h-full">
-    <div class="top-blur"></div>
-    {backTitle && to && <BackTo title={backTitle} to={to} />}
-    {headings && <TOC headings={headings} />}
-    <main
-      class="dark:selection:bg-stone-800 selection:bg-muted prose prose-p:text-foreground dark:prose-invert font-sans mx-auto my-12 max-w-[768px] px-6 antialiased sm:my-32 md:my-16 prose-headings:font-semibold prose-a:decoration-muted-foreground/30 dark:prose-a:decoration-muted-foreground/70 prose-a:underline-offset-2 hover:prose-a:decoration-muted-foreground/70 dark:hover:prose-a:decoration-muted-foreground transition-colors duration-500 prose-hr:border-border prose-blockquote:border-foreground/70"
-    >
-      <slot />
-    </main>
-    <CounterscaleScript />
-    <!-- <Footer /> -->
-  </body>
+<body class="dotted-background min-w-screen h-full">
+  <div class="top-blur"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class:list={[
+      "pt-10",
+      {
+        "lg:grid lg:grid-cols-[250px_1fr] lg:gap-8": backTitle || headings,
+        "flex justify-center": !backTitle && !headings
+      }
+    ]}>
+      {(backTitle || headings) && (
+        <aside class="lg:col-span-1">
+          <div class="lg:sticky lg:top-24 space-y-6">
+            {backTitle && to && <BackTo title={backTitle} to={to} />}
+            {headings && <TOC headings={headings} />}
+          </div>
+        </aside>
+      )}
+      <main class:list={[
+        "lg:col-span-1 w-full",
+        { "max-w-[768px]": !backTitle && !headings }
+      ]}>
+        <article
+          class="dark:selection:bg-stone-800 selection:bg-muted prose prose-p:text-foreground dark:prose-invert font-sans my-10 w-full max-w-full md:max-w-[768px] antialiased sm:my-12 md:my-14 prose-headings:font-semibold prose-a:decoration-muted-foreground/30 dark:prose-a:decoration-muted-foreground/70 prose-a:underline-offset-2 hover:prose-a:decoration-muted-foreground/70 dark:hover:prose-a:decoration-muted-foreground transition-colors duration-500 prose-hr:border-border prose-blockquote:border-foreground/70"
+        >
+          <slot />
+        </article>
+      </main>
+    </div>
+  </div>
+  <CounterscaleScript />
+  <!-- <Footer /> -->
+</body>
 </html>

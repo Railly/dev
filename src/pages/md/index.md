@@ -5,8 +5,6 @@ author: Himanshu
 description: Find out what makes Astro awesome!
 ---
 
-# Hi there!
-
 ## What you will learn
 
 1. How to introduce **salt-and-pepper** noise into images.

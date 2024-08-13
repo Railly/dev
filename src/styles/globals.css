@@ -117,6 +117,7 @@
   html.dark .astro-code,
   html:not(.dark) .astro-code {
     border: 1px solid hsl(var(--border)) !important;
+    font-size: 13px;
   }
 
   html.dark .astro-code code,

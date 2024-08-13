@@ -4,20 +4,22 @@ const { title, to } = Astro.props;
 
 <a
   href={to}
-  class="inline-flex items-center gap-2 md:sticky mt-16 md:mt-0 ml-5 md:ml-0 top-24 left-[15ch]"
+  class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width="20"
+    height="20"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    class="lucide lucide-move-left text-muted-foreground"
-    ><path d="M6 8L2 12L6 16"></path><path d="M2 12H22"></path></svg
+    class="flex-shrink-0"
   >
+    <path d="M6 8L2 12L6 16"></path>
+    <path d="M2 12H22"></path>
+  </svg>
   {title}
 </a>
