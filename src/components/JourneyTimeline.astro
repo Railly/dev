@@ -1,5 +1,7 @@
 ---
-const activityItems = [
+import type { AnyActivity } from "@/types";
+
+const activityItems: AnyActivity[] = [
   {
     type: 'progress',
     icon: '🦀',
@@ -106,9 +108,9 @@ const activityItems = [
   }
 ];
 
-function formatDate(date) {
+function formatDate(date: Date): string {
   const now = new Date();
-  const diffTime = Math.abs(now - date);
+  const diffTime = Math.abs(now.getTime() - date.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   if (diffDays === 0) return 'Today';
@@ -119,8 +121,8 @@ function formatDate(date) {
   return `${Math.floor(diffDays / 365)} years ago`;
 }
 
-function groupActivities(items) {
-  const grouped = {};
+function groupActivities(items: AnyActivity[]): AnyActivity[][] {
+  const grouped: { [key: string]: AnyActivity[] } = {};
   items.forEach(item => {
     const key = `${item.type}-${item.title}`;
     if (!grouped[key]) {
@@ -131,20 +133,20 @@ function groupActivities(items) {
   return Object.values(grouped);
 }
 
-  function getTagClasses(tag) {
-    switch (tag.toLowerCase()) {
-      case 'rust':
+function getTagClasses(tag: string): string {
+  switch (tag.toLowerCase()) {
+    case 'rust':
       return 'bg-orange-100 text-orange-800 dark:bg-orange-600/30 dark:text-foreground';
-      case 'math':
+    case 'math':
       return 'bg-blue-100 text-blue-800 dark:bg-blue-600/30 dark:text-foreground';
-      case 'project':
+    case 'project':
       return 'bg-purple-100 text-purple-800 dark:bg-purple-600/30 dark:text-foreground';
-      default:
-        return 'bg-primary/10 text-primary';
-    }
+    default:
+      return 'bg-primary/10 text-primary';
   }
+}
 
-function getProgressBarColor(percentage) {
+function getProgressBarColor(percentage: number): string {
   if (percentage < 33) return 'bg-red-500';
   if (percentage < 66) return 'bg-yellow-500';
   return 'bg-green-500';
@@ -283,9 +285,9 @@ const groupedActivities = groupActivities(activityItems);
 </section>
 
 <script>
-  const toggleView = document.getElementById('toggleView');
-  const allActivities = document.getElementById('allActivities');
-  const groupedActivities = document.getElementById('groupedActivities');
+  const toggleView = document.getElementById('toggleView') as HTMLInputElement;
+  const allActivities = document.getElementById('allActivities') as HTMLElement;
+  const groupedActivities = document.getElementById('groupedActivities') as HTMLElement;
 
   toggleView.addEventListener('change', function() {
     if (this.checked) {

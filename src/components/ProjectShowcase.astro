@@ -26,7 +26,8 @@ const projects = [
   },
 ];
 
-function getTagClasses(tag) {
+
+function getTagClasses(tag: string) {
   switch (tag.toLowerCase()) {
     case 'rust':
       return 'bg-orange-100 text-orange-800';
@@ -39,7 +40,7 @@ function getTagClasses(tag) {
   }
 }
 
-function getStatusClasses(status) {
+function getStatusClasses(status: string) {
   switch (status.toLowerCase()) {
     case 'backlog':
     case 'backlog/research':

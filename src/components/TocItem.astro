@@ -1,5 +1,16 @@
 ---
-const { item, index } = Astro.props;
+interface TocItem {
+  slug: string;
+  text: string;
+  children: TocItem[];
+}
+
+interface Props {
+  item: TocItem;
+  index: string | number;
+}
+
+const { item, index }: Props = Astro.props;
 ---
 
 <li>
