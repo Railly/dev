@@ -21,7 +21,7 @@ export type AnyActivity = {
   leagueProgress?: {
     current: string;
     next: string;
-    pointsToNext: number;
+    totalEarned: number;
   };
   bookProgress?: {
     currentChapter: number;

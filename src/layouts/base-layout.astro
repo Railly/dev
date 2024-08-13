@@ -87,9 +87,8 @@ console.log(ogImageUrl);
     <meta name="twitter:creator" content="@raillyhugo" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={`${import.meta.env.SITE}${ogImage}`} />
     <meta name="twitter:image:alt" content={title} />
-    <meta name="color-scheme" content="light dark" />
     <meta name="robots" content="follow, index" />
     <meta name="googlebot" content="follow, index" />
     <meta property="og:image" content={`${import.meta.env.SITE}${ogImage}`} />

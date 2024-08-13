@@ -1,6 +1,8 @@
 import { ImageResponse } from "@vercel/og";
 import type { APIRoute } from "astro";
 import { getCollection, getEntry } from "astro:content";
+import fs from "fs/promises";
+import path from "path";
 
 export const GET: APIRoute = async ({ params }) => {
   const { slug } = params;
@@ -132,14 +134,8 @@ export const GET: APIRoute = async ({ params }) => {
   };
 
   const loadFont = async (fontPath: string) => {
-    console.log({
-      newURL: new URL(fontPath, import.meta.url),
-    });
-    const response = await fetch(new URL(fontPath, import.meta.url));
-    if (!response.ok) {
-      throw new Error(`Failed to load font from ${fontPath}`);
-    }
-    return response.arrayBuffer();
+    const absolutePath = path.resolve(process.cwd(), "src/assets", fontPath);
+    return fs.readFile(absolutePath);
   };
 
   return new ImageResponse(html, {
@@ -148,25 +144,19 @@ export const GET: APIRoute = async ({ params }) => {
     fonts: [
       {
         name: "Figtree",
-        data: await loadFont(
-          "../../assets/figtree/figtree-latin-500-normal.ttf"
-        ),
+        data: await loadFont("figtree/figtree-latin-500-normal.ttf"),
         style: "normal",
         weight: 500,
       },
       {
         name: "Figtree",
-        data: await loadFont(
-          "../../assets/figtree/figtree-latin-600-normal.ttf"
-        ),
+        data: await loadFont("figtree/figtree-latin-600-normal.ttf"),
         style: "normal",
         weight: 600,
       },
       {
         name: "Figtree",
-        data: await loadFont(
-          "../../assets/figtree/figtree-latin-700-normal.ttf"
-        ),
+        data: await loadFont("figtree/figtree-latin-700-normal.ttf"),
         style: "normal",
         weight: 700,
       },
