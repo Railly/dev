@@ -12,12 +12,14 @@ const { title, description, date, image, slug, headings } = Astro.props;
   backTitle="Writing"
   backUrl="/writing"
   headings={headings}
-  ogImage={"/writing/" + slug + "/og.png"}
+  image={"/writing/" + slug + "/og.png"}
 >
-  <h2 class="font-bold m-0">{title}</h2>
-  <p class="text-sm mt-2 mb-8 text-muted-foreground">{date}</p>
-  <hr class="mt-0 mb-6" />
-  <slot />
+  <div class="[grid-content:2] prose dark:prose-invert">
+    <h2 class="font-bold m-0">{title}</h2>
+    <p class="text-sm mt-2 mb-8 text-muted-foreground">{date}</p>
+    <hr class="mt-0 mb-6" />
+    <slot />
+  </div>
 </BaseLayout>
 
 <script>

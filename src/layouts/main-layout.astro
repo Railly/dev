@@ -11,7 +11,8 @@ interface Props {
   author?: string;
   backTitle?: string;
   backUrl?: string;
-  image?:string;
+  image?: string;
+  headings?: any[];
 }
 
 const { 
@@ -20,7 +21,8 @@ const {
   author = SITE_AUTHOR,
   backTitle,
   backUrl,
-  image
+  image,
+  headings
 } = Astro.props;
 ---
 <html lang="en">
