@@ -1,4 +1,4 @@
-export type AnyActivity = {
+export type LogitActivity = {
   type:
     | "progress"
     | "achievement"
@@ -42,4 +42,18 @@ export type AnyActivity = {
   nextSteps?: string[];
   goalsSet?: string[];
   initialResources?: string[];
+};
+
+export type LogitProject = {
+  title: string;
+  tags: string[];
+  description: string;
+  link: string;
+  icon: string;
+  status: "Planning" | "Backlog" | "In Progress" | "Completed";
+  metadata: {
+    type: string;
+    details?: string;
+    vision?: string;
+  };
 };

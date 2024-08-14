@@ -1,15 +1,16 @@
 ---
-import BaseLayout from "../layouts/base-layout.astro";
+import MainLayout from "./main-layout.astro";
+
 
 const { title, description, date, image, slug, headings } = Astro.props;
 ---
 
-<BaseLayout
+<MainLayout
   title={title}
   description={description}
   author="Railly Hugo"
   backTitle="Writing"
-  to="/writing"
+  backUrl="/writing"
   headings={headings}
   ogImage={"/writing/" + slug + "/og.png"}
 >

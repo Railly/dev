@@ -1,61 +1,28 @@
 ---
-import Header from "@/components/Header.astro";
+import Header from "@/components/header.astro";
 import CurrentWork from "@/components/CurrentWork.astro";
 import Projects from "@/components/Projects.astro";
 import Explore from "@/components/Explore.astro";
-import BaseLayout from "@/layouts/base-layout.astro";
+import MainLayout from "@/layouts/main-layout.astro";
+import { BUILDING_PROJECTS, OPEN_SOURCE_PROJECTS } from "@/data/home";
 
-const buildingProjects = [
-  {
-    title: "Logit",
-    link: "/logit",
-    description: "Documenting my Low Level + Math Journey",
-    internal: true,
-  },
-  {
-    title: "Crafter Station",
-    link: "https://crafter-station.com",
-    description: "Digital lab for crafting new ideas and projects",
-  },
-  {
-    title: "Semantik",
-    link: "https://semantik.studio",
-    description: "AI-powered studio for databases and APIs",
-  },
-];
-
-const openSourceProjects = [
-  {
-    title: "One Hunter Theme",
-    link: "https://marketplace.visualstudio.com/items?itemName=RaillyHugo.one-hunter",
-    description: "VS Code theme inspired by Vercel and Flexoki",
-  },
-  {
-    title: "shadcn/ui customizer",
-    link: "https://shadcn-ui-customizer.vercel.app",
-    description: "Tune your shadcn/ui themes with color pickers",
-  },
-  {
-    title: "Obsidian Simple Flashcards",
-    link: "https://github.com/Railly/obsidian-simple-flashcards",
-    description: "Turn fenced code blocks into flashcards in Obsidian",
-  },
-];
 ---
 
-<BaseLayout
+<MainLayout
   title="Railly Hugo"
   description="Software Engineer. Building developer tools and open source projects."
   author="Railly Hugo"
-  ogImage="/images/og.png"
+  image="/images/og.png"
 >
-  <Header />
-  <CurrentWork />
-  <section class="mt-8 max-w-screen overflow-x-auto">
-    <div class="grid grid-cols-3 gap-6 w-[600px] md:w-full">
-      <Projects sectionTitle="Building" projects={buildingProjects} />
-      <Projects sectionTitle="Open Source" projects={openSourceProjects} />
-      <Explore />
-    </div>
-  </section>
+  <div class="[grid-column:2]">
+    <Header />
+    <CurrentWork />
+    <section class="mt-8 max-w-screen overflow-x-auto">
+      <div class="grid grid-cols-3 gap-6 w-[600px] md:w-full">
+        <Projects sectionTitle="Building" projects={BUILDING_PROJECTS} />
+        <Projects sectionTitle="Open Source" projects={OPEN_SOURCE_PROJECTS} />
+        <Explore />
+      </div>
+    </section>
+  </div>
 </BaseLayout>

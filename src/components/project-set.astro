@@ -1,0 +1,14 @@
+
+---
+import { LOGIT_PROJECTS } from '@/data/projects';
+import ProjectCard from './project-card.astro';
+---
+
+<section class="space-y-6">
+  <h2 class="text-lg font-semibold">Upcoming Projects</h2>
+  <div class="grid gap-6">
+    {LOGIT_PROJECTS.map((project) => (
+      <ProjectCard project={project} />
+    ))}
+  </div>
+</section>

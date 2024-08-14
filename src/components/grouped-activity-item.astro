@@ -1,0 +1,45 @@
+
+---
+import type { LogitActivity } from "@/types";
+import { getTagClasses } from "@/utils/classNames";
+import { formatDate } from '@/utils/helpers';
+
+interface Props {
+  group: LogitActivity[];
+  isLast: boolean;
+}
+
+const { group, isLast } = Astro.props;
+---
+
+<div class="flex items-start gap-4 relative">
+  <div class="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center text-lg z-10">
+    {group[0].icon}
+  </div>
+  {!isLast && (
+    <div class="absolute left-4 top-8 h-full w-px bg-border"></div>
+  )}
+  <div class="flex-grow">
+    <div class="border relative z-10 bg-muted px-4 py-3 rounded-md">
+      <p class="font-semibold">{group[0].title}</p>
+      {group[0].details && <p class="text-sm text-muted-foreground mt-1">{group[0].details}</p>}
+      <div class="flex justify-between items-center mt-2">
+        <div class="flex flex-wrap gap-2">
+          {group[0].tags.map((tag) => (
+            <span class={`text-xs px-2 py-1 rounded-full ${getTagClasses(tag)}`}>{tag}</span>
+          ))}
+        </div>
+        <p class="text-xs text-muted-foreground">{formatDate(group[0].date)}</p>
+      </div>
+    </div>
+    {group.length > 1 && (
+      <div class="mt-5 relative">
+        <div class="absolute -top-3 left-4 right-4 h-4 bg-muted border rounded-md"></div>
+        <div class="absolute -top-6 left-2 right-2 h-4 bg-muted border rounded-md"></div>
+        <button class="w-full mt-6 text-sm text-primary hover:underline bg-background border rounded-md py-1 relative z-10">
+          View {group.length - 1} more {group.length - 1 === 1 ? 'entry' : 'entries'}
+        </button>
+      </div>
+    )}
+  </div>
+</div>

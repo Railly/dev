@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "@/layouts/base-layout.astro";
+import MainLayout from "@/layouts/main-layout.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
@@ -22,47 +22,49 @@ const groupedPosts: GroupedPosts = blogPosts.reduce<GroupedPosts>(
 );
 ---
 
-<BaseLayout
+<MainLayout
   title="Writing"
   description="Thoughts on technology, design, and life."
   author="Railly Hugo"
   backTitle="Index"
-  to="/"
-  ogImage="/images/writing-og.png"
+  backUrl="/"
+  image="/images/writing-og.png"
 >
-  <section class="mt-8 relative">
-    <h1 class="text-lg font-bold">Writing</h1>
-    <p class="text-muted-foreground">
-      Thoughts on technology, design, and life
-    </p>
-  </section>
+  <div class="[grid-content:2]">
+    <section class="relative">
+      <h1 class="text-lg font-bold">Writing</h1>
+      <p class="text-muted-foreground">
+        Thoughts on technology, design, and life
+      </p>
+    </section>
 
-  <section class="mt-8">
-    <div class="space-y-8">
-      {
-        Object.entries(groupedPosts).map(([year, posts]) => (
-          <div>
-            <h3 class="text-base font-semibold text-muted-foreground">
-              {year}
-            </h3>
-            <ul class="list-none p-0 m-0">
-              {posts.map((post) => (
-                <li class="flex justify-between py-2 border-b">
-                  <a
-                    href={`/writing/${post.slug}`}
-                    class="text-base font-medium no-underline hover:underline"
-                  >
-                    {post.data.title}
-                  </a>
-                  <span class="text-sm text-muted-foreground">
-                    {new Date(post.data.date).toLocaleDateString()}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
-    </div>
-  </section>
+    <section class="mt-8">
+      <div class="space-y-8">
+        {
+          Object.entries(groupedPosts).map(([year, posts]) => (
+            <div>
+              <h3 class="text-base font-semibold text-muted-foreground">
+                {year}
+              </h3>
+              <ul class="list-none p-0 m-0">
+                {posts.map((post) => (
+                  <li class="flex justify-between py-2 border-b">
+                    <a
+                      href={`/writing/${post.slug}`}
+                      class="text-base font-medium no-underline hover:underline"
+                    >
+                      {post.data.title}
+                    </a>
+                    <span class="text-sm text-muted-foreground">
+                      {new Date(post.data.date).toLocaleDateString()}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </div>
 </BaseLayout>

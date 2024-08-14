@@ -1,0 +1,102 @@
+---
+import type { LogitActivity} from '@/types';
+import { formatDate } from '../utils/helpers';
+import { getTagClasses } from '../utils/classNames';
+import { getProgressBarColor } from '../utils/helpers';
+
+interface Props {
+  item: LogitActivity;
+  isLast: boolean;
+}
+
+const { item, isLast } = Astro.props;
+---
+
+<div class="flex items-start gap-4 relative">
+  <div class="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center text-lg z-10">
+    {item.icon}
+  </div>
+  {!isLast && (
+    <div class="absolute left-4 top-8 h-full w-px bg-border"></div>
+  )}
+  <div class="flex-grow border bg-muted/30 p-4 rounded-md transition-all hover:shadow-md hover:border-primary/50">
+    <p class="font-semibold">{item.title}</p>
+    {item.details && <p class="text-sm text-muted-foreground mt-1">{item.details}</p>}
+    
+    {item.progress && (
+      <div class="mt-2">
+        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+          <div 
+            class={`h-2.5 rounded-full ${getProgressBarColor(item.progress.percentage)}`} 
+            style={`width: ${item.progress.percentage}%`}
+          ></div>
+        </div>
+        <p class="text-xs text-muted-foreground mt-1">
+          Progress: {item.progress.current}/{item.progress.total}
+        </p>
+      </div>
+    )}
+
+    {item.leagueProgress && (
+      <div class="mt-2">
+        <p class="text-sm">Current League: <span class="font-semibold">{item.leagueProgress.current}</span></p>
+        <p class="text-xs text-muted-foreground">Total earned: {item.leagueProgress.totalEarned} XP</p>
+      </div>
+    )}
+
+    {item.bookProgress && (
+      <div class="mt-2">
+        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+          <div 
+            class={`h-2.5 rounded-full ${getProgressBarColor(item.bookProgress.percentage)}`} 
+            style={`width: ${item.bookProgress.percentage}%`}
+          ></div>
+        </div>
+        <p class="text-xs text-muted-foreground mt-1">
+          Chapter {item.bookProgress.currentChapter}/{item.bookProgress.totalChapters}
+          {item.timeSpent && ` • Time spent: ${item.timeSpent} minutes`}
+        </p>
+      </div>
+    )}
+
+    {item.projectPhase && (
+      <div class="mt-2">
+        <p class="text-sm">Phase: <span class="font-semibold">{item.projectPhase}</span></p>
+        {item.tasksCompleted !== undefined && item.totalTasks !== undefined && (
+          <p class="text-xs text-muted-foreground">
+            Tasks: {item.tasksCompleted}/{item.totalTasks} completed
+          </p>
+        )}
+      </div>
+    )}
+
+    {item.streakDays && (
+      <div class="mt-2">
+        <p class="text-sm">🔥 {item.streakDays} day streak</p>
+        {item.pointsEarned && (
+          <p class="text-xs text-muted-foreground">Points earned: {item.pointsEarned}</p>
+        )}
+      </div>
+    )}
+
+    {item.topics && (
+      <div class="mt-2 pb-2.5 border-b">
+        <p class="text-sm m-0 font-semibold">Topics covered:</p>
+        <div class="flex flex-wrap gap-1 mt-1.5">
+          {item.topics.map((topic) => (
+            <span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">{topic}</span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="flex justify-between items-center mt-1">
+      <div class="flex flex-wrap gap-2">
+        {item.tags.map((tag) => (
+          <span class={`text-xs px-2 py-1 rounded-full ${getTagClasses(tag)}`}>{tag}</span>
+        ))}
+      </div>
+      <p class="text-xs text-muted-foreground">{formatDate(item.date)}</p>
+    </div>
+  </div>
+</div>

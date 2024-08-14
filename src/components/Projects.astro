@@ -25,7 +25,7 @@ const { sectionTitle, projects } = Astro.props as ProjectsProps;
           <a
             href={project.link}
             target={project.internal ? "_self" : "_blank"}
-            class="inline-flex group gap-1 items-center text-base font-medium m-0"
+        class="inline-flex group gap-1 items-center text-base underline text-foreground underline-offset-2 decoration-muted-foreground/70 hover:decoration-foreground font-medium m-0 transition-colors"
           >
             {project.title}
             {!project.internal && (
@@ -39,7 +39,7 @@ const { sectionTitle, projects } = Astro.props as ProjectsProps;
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-move-up-right text-muted-foreground/70 group-hover:text-muted-foreground"
+                class="lucide lucide-move-up-right text-muted-foreground/70 group-hover:text-foreground"
               >
                 <>
                   <path d="M13 5H19V11" />

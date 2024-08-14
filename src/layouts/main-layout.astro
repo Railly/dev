@@ -1,0 +1,41 @@
+---
+import "@/styles/globals.css";
+import "@fontsource-variable/figtree";
+import BaseHead from '../components/base-head.astro';
+import GoBack from '@/components/go-back.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_AUTHOR } from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  author?: string;
+  backTitle?: string;
+  backUrl?: string;
+  image?:string;
+}
+
+const { 
+  title = SITE_TITLE, 
+  description = SITE_DESCRIPTION, 
+  author = SITE_AUTHOR,
+  backTitle,
+  backUrl,
+  image
+} = Astro.props;
+---
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} image={image} author={author}/>
+  </head>
+  <body>
+    <main class="main-container">
+      <div class="main-grid">
+        {backTitle && backUrl  &&
+          <GoBack title={backTitle} to={backUrl} />
+        }
+        <slot />
+      </div>
+    </main>
+    <!--<Footer />-->
+  </body>
+</html>
