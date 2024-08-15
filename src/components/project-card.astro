@@ -1,0 +1,48 @@
+---
+import { getTagClasses, getStatusClasses } from "../utils/classNames";
+
+interface Props {
+  project: any;
+}
+
+const { project } = Astro.props;
+---
+
+<div
+  class="bg-muted/30 border border-border rounded-md p-4 transition-all hover:shadow-md hover:border-primary/50"
+>
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="text-xl font-semibold">{project.title}</h3>
+    <span
+      class={`text-xs px-2 py-1 rounded-full ${getStatusClasses(project.status)}`}
+    >
+      {project.status}
+    </span>
+  </div>
+  <p class="text-sm text-muted-foreground mb-4">{project.description}</p>
+  <div class="flex flex-wrap gap-2 mb-4">
+    {
+      project.tags.map((tag: any) => (
+        <span class={`text-xs px-2 py-1 rounded-full ${getTagClasses(tag)}`}>
+          {tag}
+        </span>
+      ))
+    }
+  </div>
+  {
+    project.metadata && (
+      <div class="mt-4 p-4 bg-secondary/10 border rounded-md">
+        {Object.entries(project.metadata).map(([key, value]) => (
+          <div class="mb-2">
+            <span class="font-semibold text-sm text-secondary-foreground">
+              {key.charAt(0).toUpperCase() + key.slice(1)}:
+            </span>
+            <span class="text-sm ml-2">
+              {typeof value === "string" ? value : JSON.stringify(value)}
+            </span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+</div>
