@@ -1,6 +1,4 @@
-import type { LogitProject } from "@/types";
-
-export const LOGIT_PROJECTS: LogitProject[] = [
+export const LOGIT_PROJECTS = [
   {
     title: "Multi-Client Chat Server",
     tags: ["Rust", "TCP", "Concurrency"],

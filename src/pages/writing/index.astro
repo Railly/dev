@@ -18,7 +18,7 @@ const groupedPosts: GroupedPosts = blogPosts.reduce<GroupedPosts>(
     acc[year].push(post);
     return acc;
   },
-  {}
+  {},
 );
 ---
 
@@ -67,4 +67,4 @@ const groupedPosts: GroupedPosts = blogPosts.reduce<GroupedPosts>(
       </div>
     </section>
   </div>
-</BaseLayout>
+</MainLayout>
