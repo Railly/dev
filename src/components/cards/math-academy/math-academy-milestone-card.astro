@@ -40,16 +40,16 @@ const { item } = Astro.props;
 
   {
     item.leagueProgress && (
-      <div class="mt-2">
-        <p class="text-sm">
+      <ul class="list-disc list-inside text-sm mt-2">
+        <li class="text-sm">
           Current League:{" "}
           <span class="font-semibold">{item.leagueProgress.current}</span>
-        </p>
-        <p class="text-sm">Next League: {item.leagueProgress.next}</p>
-        <p class="text-sm">
+        </li>
+        <li class="text-sm">Next League: {item.leagueProgress.next}</li>
+        <li class="text-sm">
           Total XP Earned: {item.leagueProgress.totalEarned}
-        </p>
-      </div>
+        </li>
+      </ul>
     )
   }
 

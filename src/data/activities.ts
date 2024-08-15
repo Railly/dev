@@ -2,10 +2,107 @@ import type { LogitActivity } from "@/types";
 
 export const LOGIT_ACTIVITIES: LogitActivity[] = [
   {
+    id: "19",
+    type: "math-academy",
+    subtype: "milestone",
+    icon: "🏆",
+    title: "Reached 33% of Foundations II in Math Academy",
+    details: "One-third of the way through Foundations II course",
+    date: new Date(2024, 7, 15), // August 15, 2024
+    tags: ["math", "milestone", "achievement"],
+    milestoneProgress: {
+      current: 33,
+      total: 100,
+    },
+    leagueProgress: {
+      current: "Gold 🏅",
+      next: "Platinum 💎",
+      totalEarned: 1586,
+    },
+  },
+  {
+    id: "18",
+    type: "project",
+    icon: "🖊️",
+    title: "Started new blog post",
+    details: "First draft of 'How I use 'AI' for learning' blogpost",
+    date: new Date(2024, 7, 15), // August 15, 2024
+    tags: ["writing", "AI", "learning"],
+    progress: {
+      phase: "First Draft",
+      tasksCompleted: 1,
+      totalTasks: 3,
+    },
+    timeSpent: 60, // Estimated time, adjust as needed
+  },
+  {
+    id: "17",
+    type: "math-academy",
+    subtype: "progress",
+    icon: "🧮",
+    title: "Math Academy Progress",
+    details: "Completed 7 lessons and 1 assessment",
+    date: new Date(2024, 7, 15), // August 15, 2024
+    tags: ["math", "learning"],
+    progress: {
+      lessonsCompleted: 7,
+      pointsEarned: 84,
+      totalXP: 1586, // 1502 + 84
+      todayXP: 84,
+      dailyGoal: 70,
+      currentLevel: "Gold 🏅",
+    },
+    topics: [
+      "Exponential Decay",
+      "Limits Rules",
+      "Dilations",
+      "Cube Root Function",
+      "Sequences",
+      "Function Composition",
+    ],
+  },
+  {
+    id: "15",
+    type: "study",
+    icon: "📚",
+    title: 'Chapter 7.3 of "The Rust Programming Language" book',
+    details: "Learned about relative & absolute paths, pub & crate keywords",
+    date: new Date(2024, 7, 15), // August 15, 2024
+    tags: ["rust", "book", "learning"],
+    bookProgress: {
+      currentChapter: 7,
+      totalChapters: 21,
+      current: 7,
+      total: 21,
+    },
+    topics: [
+      "Relative Paths",
+      "Absolute Paths",
+      "pub Keyword",
+      "crate Keyword",
+    ],
+    timeSpent: 35,
+  },
+  {
+    id: "16",
+    type: "project",
+    icon: "💻",
+    title: "Refactored logit and added new features",
+    details: "Added sticky headers and compact view of cards",
+    date: new Date(2024, 7, 15), // August 15, 2024
+    tags: ["project", "development", "rust"],
+    timeSpent: 90, // Estimated time, adjust as needed
+    progress: {
+      phase: "Refactoring",
+      tasksCompleted: 2,
+      totalTasks: 3,
+    },
+  },
+  {
     id: "1",
     type: "study",
     icon: "📚",
-    title: 'Advanced through Chapter 7 of "The Rust Programming Language" book',
+    title: 'Chapter 7 of "The Rust Programming Language" book',
     details: "Learned about packages, crates, modules, and lib/bin mode",
     date: new Date(2024, 7, 14),
     tags: ["rust", "book", "learning"],
