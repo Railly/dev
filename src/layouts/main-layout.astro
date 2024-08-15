@@ -1,8 +1,9 @@
 ---
 import "@/styles/globals.css";
 import "@fontsource-variable/figtree";
-import BaseHead from '../components/base-head.astro';
+import BaseHead from '@/components/base-head.astro';
 import GoBack from '@/components/go-back.astro';
+import CounterscaleScript from '@/components/counterscale-script.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_AUTHOR } from '../config';
 
 interface Props {
@@ -39,5 +40,6 @@ const {
       </div>
     </main>
     <!--<Footer />-->
+  <CounterscaleScript />
   </body>
 </html>

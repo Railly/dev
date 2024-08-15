@@ -25,6 +25,8 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20.12.12",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
     "shikiji": "^0.6.13"
   }
 }

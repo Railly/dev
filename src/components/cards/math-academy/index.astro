@@ -1,0 +1,22 @@
+---
+import MathAcademyProgressCard from "./math-academy-progress-card.astro";
+import MathAcademyAchievementCard from "./math-academy-achievement-card.astro";
+import MathAcademyMilestoneCard from "./math-academy-milestone-card.astro";
+import MathAcademyStreakCard from "./math-academy-streak-card.astro";
+import type { MathAcademyActivity } from "@/types";
+
+interface Props {
+  item: MathAcademyActivity;
+}
+
+const { item } = Astro.props;
+
+const CardComponent = {
+  progress: MathAcademyProgressCard,
+  achievement: MathAcademyAchievementCard,
+  milestone: MathAcademyMilestoneCard,
+  streak: MathAcademyStreakCard,
+}[item.subtype];
+---
+
+<CardComponent item={item} />

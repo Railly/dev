@@ -25,7 +25,7 @@ const { sectionTitle, projects } = Astro.props as ProjectsProps;
           <a
             href={project.link}
             target={project.internal ? "_self" : "_blank"}
-        class="inline-flex group gap-1 items-center text-base underline text-foreground underline-offset-2 decoration-muted-foreground/70 hover:decoration-foreground font-medium m-0 transition-colors"
+            class="inline-flex group gap-1 items-center text-base underline text-foreground underline-offset-2 decoration-muted-foreground/70 hover:decoration-foreground font-medium m-0 transition-colors"
           >
             {project.title}
             {!project.internal && (

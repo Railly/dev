@@ -1,14 +1,14 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
   description: string;
-  author:string;
+  author: string;
   image?: string;
 }
 
-const { title, description, author, image = '/images/og.png' } = Astro.props;
+const { title, description, author, image = "/images/og.png" } = Astro.props;
 ---
 
 <meta charset="utf-8" />
@@ -40,29 +40,34 @@ const { title, description, author, image = '/images/og.png' } = Astro.props;
 
 <script is:inline>
   function updateTheme() {
-    const theme = localStorage.getItem('theme') || 
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    
-    document.documentElement.classList.toggle('dark', theme === 'dark');
+    const theme =
+      localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+
+    document.documentElement.classList.toggle("dark", theme === "dark");
   }
 
   // Initial theme application
-  document.addEventListener('astro:page-load', updateTheme, {once: true});
+  document.addEventListener("astro:page-load", updateTheme, { once: true });
 
   // Apply theme after each navigation
-  document.addEventListener('astro:after-swap', updateTheme);
+  document.addEventListener("astro:after-swap", updateTheme);
 
   // Apply theme to new document before swap
-  document.addEventListener('astro:before-swap', (ev) => {
-    const theme = localStorage.getItem('theme');
-    ev.newDocument.documentElement.classList.toggle('dark', theme === 'dark');
+  document.addEventListener("astro:before-swap", (ev) => {
+    const theme = localStorage.getItem("theme");
+    ev.newDocument.documentElement.classList.toggle("dark", theme === "dark");
   });
 
   // Update theme when system preference changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-    localStorage.setItem('theme', event.matches ? 'dark' : 'light');
-    updateTheme();
-  });
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (event) => {
+      localStorage.setItem("theme", event.matches ? "dark" : "light");
+      updateTheme();
+    });
 
   // Observe theme changes
   const observer = new MutationObserver(() => {
@@ -70,7 +75,7 @@ const { title, description, author, image = '/images/og.png' } = Astro.props;
     localStorage.setItem("theme", isDark ? "dark" : "light");
     updateTheme();
   });
-  
+
   observer.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["class"],

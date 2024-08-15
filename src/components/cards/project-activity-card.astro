@@ -1,0 +1,55 @@
+---
+import { formatDate } from "@/utils/helpers";
+import { getTagClasses } from "@/utils/classNames";
+import type { ProjectActivity } from "@/types";
+
+interface Props {
+  item: ProjectActivity;
+}
+
+const { item } = Astro.props;
+---
+
+<div
+  class="flex-grow border bg-muted/30 p-4 rounded-md transition-all hover:shadow-md hover:border-primary/50"
+>
+  <p class="font-semibold">{item.title}</p>
+  {
+    item.details && (
+      <p class="text-sm text-muted-foreground mt-1">{item.details}</p>
+    )
+  }
+
+  {
+    item.progress && (
+      <div class="mt-2">
+        <p class="text-sm">
+          Phase: <span class="font-semibold">{item.progress.phase}</span>
+        </p>
+        <p class="text-xs text-muted-foreground">
+          Tasks: {item.progress.tasksCompleted}/{item.progress.totalTasks}{" "}
+          completed
+        </p>
+      </div>
+    )
+  }
+
+  {
+    item.timeSpent && (
+      <p class="text-sm mt-2">Time spent: {item.timeSpent} minutes</p>
+    )
+  }
+
+  <div class="flex justify-between items-center mt-1">
+    <div class="flex flex-wrap gap-2">
+      {
+        item.tags.map((tag) => (
+          <span class={`text-xs px-2 py-1 rounded-full ${getTagClasses(tag)}`}>
+            {tag}
+          </span>
+        ))
+      }
+    </div>
+    <p class="text-xs text-muted-foreground">{formatDate(item.date)}</p>
+  </div>
+</div>

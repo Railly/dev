@@ -1,27 +1,40 @@
 ---
-import MainLayout from '@/layouts/main-layout.astro';
-import ProjectSet from '@/components/project-set.astro';
-import ActivityLog from '@/components/activity-log.astro';
+import MainLayout from "@/layouts/main-layout.astro";
+import ProjectSet from "@/components/project-set.astro";
+import ActivityLog from "@/components/activity-log.astro";
 ---
 
 <MainLayout
   title="Logit - My Low Level + Math Journey"
   description="Documenting my Low Level + Math Journey. Sharing my learning process, resources, and creating open-source projects."
-  image='/images/logit-og.png'
+  image="/images/logit-og.png"
   backTitle="Index"
   backUrl="/"
 >
   <div class="[grid-column:2]">
-    <section class="hero mb-12">
+    <section class="hero mb-8">
       <h1 class="text-lg font-semibold mb-4">Welcome to Logit</h1>
       <p>
-        Documenting my Low Level + Math Journey. <br /> 
+        Documenting my Low Level + Math Journey. <br />
         Sharing my learning process, resources, and creating open-source projects.
       </p>
     </section>
     <div class="grid gap-12 md:grid-cols-2">
-      <ProjectSet />
+      <div class="sticky top-4 mt-4 self-start">
+        <ProjectSet />
+      </div>
       <ActivityLog />
     </div>
   </div>
 </MainLayout>
+
+<style>
+  .sticky {
+    position: sticky;
+    top: 1rem; /* Value to control how far from the top the element sticks */
+    max-height: calc(
+      100vh - 2rem
+    ); /* To make sure it doeesn't overflow the viewport */
+    overflow-y: auto; /* Allow scrolling if the content is taller than the viewport */
+  }
+</style>
