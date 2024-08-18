@@ -2,6 +2,135 @@ import type { LogitActivity } from "@/types";
 
 export const LOGIT_ACTIVITIES: LogitActivity[] = [
   {
+    id: "24",
+    type: "study",
+    icon: "📚",
+    title: 'Started Chapter 8 of "The Rust Programming Language" book',
+    details: "Covered 8.1: Storing Lists of Values with Vectors",
+    date: new Date(2024, 7, 17), // August 17, 2024
+    tags: ["rust", "book", "learning"],
+    bookProgress: {
+      currentChapter: 8,
+      totalChapters: 21,
+      current: 8,
+      total: 21,
+    },
+    topics: ["Vectors", "Common Collections"],
+    timeSpent: 60, // Estimated time, adjust as needed
+  },
+  {
+    id: "25",
+    type: "study",
+    icon: "🦀",
+    title: "Studied Rust documentation on collections",
+    details: "Explored HashMap, Vec, VecDeque, BinaryHeap",
+    date: new Date(2024, 7, 17), // August 17, 2024
+    tags: ["rust", "documentation", "learning"],
+    topics: ["HashMap", "Vec", "VecDeque", "BinaryHeap"],
+    timeSpent: 45, // Estimated time, adjust as needed
+  },
+  {
+    id: "26",
+    type: "math-academy",
+    subtype: "progress",
+    icon: "🧮",
+    title: "Math Academy Progress",
+    details: "Completed 8 lessons including a multistep exercise",
+    date: new Date(2024, 7, 17), // August 17, 2024
+    tags: ["math", "learning"],
+    progress: {
+      lessonsCompleted: 8,
+      pointsEarned: 80,
+      totalXP: 1738, // 1658 + 80
+      todayXP: 80,
+      dailyGoal: 64,
+      currentLevel: "Gold 🏅",
+    },
+    topics: [
+      "Limits",
+      "Continuity",
+      "Complex Roots",
+      "Arithmetic Sequences",
+      "Fibonacci Sequences",
+      "Quadratic Equations",
+    ],
+  },
+  {
+    id: "23",
+    type: "study",
+    icon: "📚",
+    title: 'Completed Chapter 7 of "The Rust Programming Language" book',
+    details: "Covered 'use' keyword and separating modules into files",
+    date: new Date(2024, 7, 16), // August 16, 2024
+    tags: ["rust", "book", "learning"],
+    bookProgress: {
+      currentChapter: 7,
+      totalChapters: 21,
+      current: 7,
+      total: 21,
+    },
+    topics: ["use Keyword", "Module Separation"],
+    timeSpent: 60, // Estimated time, adjust as needed
+  },
+  {
+    id: "22",
+    type: "progress",
+    icon: "🦀",
+    title: "Completed Rustlings 10_modules exercises",
+    details: "43/94 exercises (46% complete)",
+    date: new Date(2024, 7, 16), // August 16, 2024
+    tags: ["rust", "learning"],
+    progress: {
+      current: 43,
+      total: 94,
+    },
+    topics: ["Modules", "Code Organization"],
+  },
+  {
+    id: "21",
+    type: "math-academy",
+    subtype: "progress",
+    icon: "🧮",
+    title: "Flawless Math Academy session",
+    details: "Completed 7 lessons and 1 assessment",
+    date: new Date(2024, 7, 16), // August 16, 2024
+    tags: ["math", "learning"],
+    progress: {
+      lessonsCompleted: 7,
+      pointsEarned: 72,
+      totalXP: 1658, // 1586 + 72
+      todayXP: 72,
+      dailyGoal: 57,
+      currentLevel: "Gold 🏅",
+    },
+    topics: [
+      "Arithmetic Sequences",
+      "Infinite Limits",
+      "Complex Plane",
+      "Complex Number Operations",
+      "Data Mean",
+      "Recursive Sequences",
+    ],
+  },
+  {
+    id: "20",
+    type: "math-academy",
+    subtype: "achievement",
+    icon: "🏆",
+    title: "Aced Quiz 10 in Math Academy",
+    details: "Scored 18/15 XP on Quiz 10",
+    date: new Date(2024, 7, 16), // August 16, 2024
+    tags: ["math", "achievement"],
+    achievement: {
+      name: "Quiz Master",
+      description: "Scored above 100% on a quiz",
+    },
+    progress: {
+      pointsEarned: 18,
+      maxPoints: 15,
+    },
+  },
+  {
     id: "19",
     type: "math-academy",
     subtype: "milestone",
