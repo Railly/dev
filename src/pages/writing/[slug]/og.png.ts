@@ -194,6 +194,7 @@ export const GET: APIRoute = async ({ params }) => {
     return fs.readFile(absolutePath);
   };
 
+  // @ts-ignore
   return new ImageResponse(html, {
     width: 1200,
     height: 630,

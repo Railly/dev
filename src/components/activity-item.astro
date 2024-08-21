@@ -23,6 +23,7 @@ const getActivityComponent = (item: LogitActivity) => {
     case "study":
       return StudyActivityCard;
     case "project":
+      // @ts-ignore
       return item.subtype === "announcement"
         ? ProjectAnnouncementActivityCard
         : ProjectActivityCard;

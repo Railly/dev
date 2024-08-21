@@ -83,24 +83,6 @@ export const LOGIT_ACTIVITIES: LogitActivity[] = [
     ],
   },
   {
-    id: "28",
-    type: "math-academy",
-    subtype: "achievement",
-    icon: "🏆",
-    title: "Aced Quiz 11 in Math Academy",
-    details: "Scored 15/15 XP on Quiz 11",
-    date: new Date(2024, 7, 19), // August 21, 2024
-    tags: ["math", "achievement"],
-    achievement: {
-      name: "Perfect Score",
-      description: "Achieved a perfect score on a quiz",
-    },
-    progress: {
-      pointsEarned: 15,
-      maxPoints: 15,
-    },
-  },
-  {
     id: "29",
     type: "study",
     icon: "📚",
@@ -296,24 +278,6 @@ export const LOGIT_ACTIVITIES: LogitActivity[] = [
       "Data Mean",
       "Recursive Sequences",
     ],
-  },
-  {
-    id: "20",
-    type: "math-academy",
-    subtype: "achievement",
-    icon: "🏆",
-    title: "Aced Quiz 10 in Math Academy",
-    details: "Scored 18/15 XP on Quiz 10",
-    date: new Date(2024, 7, 16), // August 16, 2024
-    tags: ["math", "achievement"],
-    achievement: {
-      name: "Quiz Master",
-      description: "Scored above 100% on a quiz",
-    },
-    progress: {
-      pointsEarned: 18,
-      maxPoints: 15,
-    },
   },
   {
     id: "19",
