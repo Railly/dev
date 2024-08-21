@@ -2,6 +2,191 @@ import type { LogitActivity } from "@/types";
 
 export const LOGIT_ACTIVITIES: LogitActivity[] = [
   {
+    id: "36",
+    type: "math-academy",
+    subtype: "progress",
+    icon: "🧮",
+    title: "Math Academy Progress",
+    details: "Completed 6 lessons and 1 assessment",
+    date: new Date(2024, 7, 20), // August 24, 2024
+    tags: ["math", "learning"],
+    progress: {
+      lessonsCompleted: 6,
+      pointsEarned: 77, // 59 from lessons + 18 from assessment
+      totalXP: 1971, // 1894 + 77
+      todayXP: 77,
+      dailyGoal: 50, // Assuming the daily goal, adjust if needed
+      currentLevel: "Platinum 💎",
+    },
+    topics: [
+      "Faces, Vertices, and Edges of Polyhedrons",
+      "Local Extrema of Functions",
+      "Least Common Multiple of Polynomials",
+      "Rotational Symmetry",
+      "Scatter Plots",
+      "Geometric Sequences",
+    ],
+  },
+  {
+    id: "35",
+    type: "project",
+    subtype: "announcement",
+    icon: "🎨",
+    title: "Introducing Tinte: Your AI-powered VS Code Theme Generator",
+    details: "Design, Visualize, and Share themes with ease.",
+    date: new Date(2024, 7, 20), // August 23, 2024
+    tags: ["project", "AI", "VS Code", "themes", "Tinte"],
+    socialMedia: {
+      platform: "Twitter",
+      username: "@RaillyHugo",
+      link: "https://x.com/RaillyHugo/status/1825860861035978935",
+    },
+    projectFeatures: [
+      "Use ray.so fantasy themes in VS Code",
+      "Access featured themes (Vercel, Tailwind CSS, Supabase, etc.)",
+      "Generate themes with AI prompts",
+      "Customize colors in the theme editor",
+      "Export and share instantly",
+    ],
+    callToAction: {
+      text: "Try Tinte for free",
+      link: "https://tinte.railly.dev", // Replace with actual link when available
+    },
+  },
+  {
+    id: "27",
+    type: "math-academy",
+    subtype: "achievement",
+    icon: "🏆",
+    title: "Reached Platinum League in Math Academy",
+    details: "Reached 40% of Foundations II",
+    date: new Date(2024, 7, 19), // August 21, 2024
+    tags: ["math", "achievement"],
+    achievement: {
+      name: "Platinum League",
+      description: "Reached Platinum League in Math Academy",
+    },
+    progress: {
+      lessonsCompleted: 6,
+      pointsEarned: 80,
+      totalXP: 1818, // 1738 + 80
+      todayXP: 80,
+      dailyGoal: 69,
+      currentLevel: "Platinum 💎",
+    },
+    topics: [
+      "Square Root Function",
+      "Variance",
+      "Standard Deviation",
+      "Geometric Sequences",
+      "Geometric Figures",
+    ],
+  },
+  {
+    id: "28",
+    type: "math-academy",
+    subtype: "achievement",
+    icon: "🏆",
+    title: "Aced Quiz 11 in Math Academy",
+    details: "Scored 15/15 XP on Quiz 11",
+    date: new Date(2024, 7, 19), // August 21, 2024
+    tags: ["math", "achievement"],
+    achievement: {
+      name: "Perfect Score",
+      description: "Achieved a perfect score on a quiz",
+    },
+    progress: {
+      pointsEarned: 15,
+      maxPoints: 15,
+    },
+  },
+  {
+    id: "29",
+    type: "study",
+    icon: "📚",
+    title: 'Completed Chapter 8 of "The Rust Programming Language" book',
+    details: "Covered Common Collections: Vectors, Strings, Hash Maps",
+    date: new Date(2024, 7, 19), // August 21, 2024
+    tags: ["rust", "book", "learning"],
+    bookProgress: {
+      currentChapter: 8,
+      totalChapters: 21,
+      current: 8,
+      total: 21,
+    },
+    topics: ["Vectors", "Strings", "Hash Maps", "Ownership"],
+    timeSpent: 120, // Estimated time, adjust as needed
+  },
+  {
+    id: "30",
+    type: "progress",
+    icon: "🦀",
+    title: "Completed Rustlings 11_hashmaps exercises",
+    details: "46/94 exercises (49% complete)",
+    date: new Date(2024, 7, 19), // August 21, 2024
+    tags: ["rust", "learning"],
+    progress: {
+      current: 46,
+      total: 94,
+    },
+    topics: ["Hash Maps"],
+  },
+  {
+    id: "31",
+    type: "project",
+    icon: "📱",
+    title: "Started development of iOS app",
+    details: "Began work on a minimalist calculator app",
+    date: new Date(2024, 7, 19), // August 21, 2024
+    tags: ["iOS", "development", "project"],
+    progress: {
+      phase: "Initial Development",
+      tasksCompleted: 1,
+      totalTasks: 10, // Estimated total tasks, adjust as needed
+    },
+  },
+  {
+    id: "32",
+    type: "math-academy",
+    subtype: "progress",
+    icon: "🧮",
+    title: "Math Academy Progress",
+    details: "Completed 8 lessons",
+    date: new Date(2024, 7, 18), // August 22, 2024
+    tags: ["math", "learning"],
+    progress: {
+      lessonsCompleted: 8,
+      pointsEarned: 76,
+      totalXP: 1894, // 1818 + 76
+      todayXP: 76,
+      dailyGoal: 50,
+      currentLevel: "Platinum 💎",
+    },
+    topics: [
+      "3D Shapes",
+      "Biquadratic Expressions",
+      "Z-Score",
+      "Geometric Sequences",
+    ],
+  },
+  {
+    id: "33",
+    type: "study",
+    icon: "📚",
+    title: 'Started Chapter 9 of "The Rust Programming Language" book',
+    details: "Covered 9.1 and 9.2: Error Handling and Result<T,E>",
+    date: new Date(2024, 7, 18), // August 22, 2024
+    tags: ["rust", "book", "learning"],
+    bookProgress: {
+      currentChapter: 9,
+      totalChapters: 21,
+      current: 9,
+      total: 21,
+    },
+    topics: ["Error Handling", "Result<T,E>", "panic! macro", "Closures"],
+    timeSpent: 90, // Estimated time, adjust as needed
+  },
+  {
     id: "24",
     type: "study",
     icon: "📚",

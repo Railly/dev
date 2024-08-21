@@ -7,7 +7,8 @@ export type LogitActivity =
   | LearningActivity
   | PlanningActivity
   | MilestoneActivity
-  | StartActivity;
+  | StartActivity
+  | ProjectAnnouncementActivity;
 
 export interface BaseActivity {
   id: string;
@@ -113,4 +114,19 @@ export interface StudyActivity extends BaseActivity {
   bookProgress?: BookProgressData;
   topics?: string[];
   timeSpent?: number;
+}
+
+export interface ProjectAnnouncementActivity extends BaseActivity {
+  type: "project";
+  subtype: "announcement";
+  socialMedia: {
+    platform: string;
+    username: string;
+    link: string;
+  };
+  projectFeatures: string[];
+  callToAction: {
+    text: string;
+    link: string;
+  };
 }

@@ -2,6 +2,7 @@
 import MainLayout from "@/layouts/main-layout.astro";
 import ProjectSet from "@/components/project-set.astro";
 import ActivityLog from "@/components/activity-log.astro";
+import LogitTimeline from "@/components/logit-timeline.tsx";
 ---
 
 <MainLayout
@@ -19,10 +20,7 @@ import ActivityLog from "@/components/activity-log.astro";
         Sharing my learning process, resources, and creating open-source projects.
       </p>
     </section>
-    <div class="grid gap-12 md:grid-cols-2">
-      <div class="sticky top-4 self-start">
-        <ProjectSet />
-      </div>
+    <div class="grid">
       <ActivityLog />
     </div>
   </div>

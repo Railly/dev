@@ -6,6 +6,7 @@ import ProgressActivityCard from "./cards/progress-activity-card.astro";
 import LearningActivityCard from "./cards/learning-activity-card.astro";
 import PlanningActivityCard from "./cards/planning-activity-card.astro";
 import StartActivityCard from "./cards/start-activity-card.astro";
+import ProjectAnnouncementActivityCard from "./cards/project-announcement-activity-card.astro";
 import { formatDate } from "../utils/helpers";
 import { getTagClasses } from "../utils/classNames";
 import type { LogitActivity } from "@/types";
@@ -22,7 +23,9 @@ const getActivityComponent = (item: LogitActivity) => {
     case "study":
       return StudyActivityCard;
     case "project":
-      return ProjectActivityCard;
+      return item.subtype === "announcement"
+        ? ProjectAnnouncementActivityCard
+        : ProjectActivityCard;
     case "math-academy":
       return MathAcademyCard;
     case "progress":
