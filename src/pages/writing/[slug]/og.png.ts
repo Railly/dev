@@ -189,10 +189,10 @@ export const GET: APIRoute = async ({ params }) => {
     },
   };
 
-  const loadFont = async (fontPath: string) => {
-    const absolutePath = path.resolve(process.cwd(), "src/assets", fontPath);
-    return fs.readFile(absolutePath);
-  };
+  async function loadFont(fontPath: string) {
+    const filePath = path.join(process.cwd(), "public", fontPath);
+    return fs.readFile(filePath);
+  }
 
   // @ts-ignore
   return new ImageResponse(html, {
@@ -201,19 +201,19 @@ export const GET: APIRoute = async ({ params }) => {
     fonts: [
       {
         name: "Figtree",
-        data: await loadFont("figtree/figtree-latin-500-normal.ttf"),
+        data: await loadFont("/assets/figtree/figtree-latin-500-normal.ttf"),
         style: "normal",
         weight: 500,
       },
       {
         name: "Figtree",
-        data: await loadFont("figtree/figtree-latin-600-normal.ttf"),
+        data: await loadFont("/assets/figtree/figtree-latin-600-normal.ttf"),
         style: "normal",
         weight: 600,
       },
       {
         name: "Figtree",
-        data: await loadFont("figtree/figtree-latin-700-normal.ttf"),
+        data: await loadFont("/assets/figtree/figtree-latin-700-normal.ttf"),
         style: "normal",
         weight: 700,
       },
@@ -227,3 +227,7 @@ export async function getStaticPaths() {
     params: { slug: post.slug },
   }));
 }
+
+export const config = {
+  runtime: "edge",
+};
