@@ -189,15 +189,51 @@ export const GET: APIRoute = async ({ params }) => {
     },
   };
 
-  const loadFont = async (fontPath: string) => {
-    const fullPath = path.resolve(process.cwd(), fontPath);
+  const loadFont = async (fontPath: string): Promise<Buffer> => {
+    const cwd = process.cwd();
+    const fullPath = path.resolve(cwd, fontPath);
     console.log({ fullPath });
+
     try {
       return await fs.readFile(fullPath);
     } catch (error) {
       console.error(`Failed to load font from ${fullPath}:`, error);
-      throw new Error(`Failed to load font from ${fontPath}`);
+
+      // Search for the file recursively
+      const foundPath = await searchFileRecursively(
+        cwd,
+        path.basename(fontPath),
+      );
+
+      if (foundPath) {
+        console.log(`Font found at: ${foundPath}`);
+        return await fs.readFile(foundPath);
+      } else {
+        throw new Error(
+          `Failed to load font: ${fontPath} not found in ${cwd} or its subdirectories`,
+        );
+      }
     }
+  };
+
+  const searchFileRecursively = async (
+    dir: string,
+    filename: string,
+  ): Promise<string | null> => {
+    const files = await fs.readdir(dir, { withFileTypes: true });
+
+    for (const file of files) {
+      const filePath = path.join(dir, file.name);
+
+      if (file.isDirectory()) {
+        const result = await searchFileRecursively(filePath, filename);
+        if (result) return result;
+      } else if (file.name === filename) {
+        return filePath;
+      }
+    }
+
+    return null;
   };
 
   // @ts-ignore
@@ -207,25 +243,19 @@ export const GET: APIRoute = async ({ params }) => {
     fonts: [
       {
         name: "Figtree",
-        data: await loadFont(
-          "public/assets/figtree/figtree-latin-500-normal.ttf",
-        ),
+        data: await loadFont("assets/figtree/figtree-latin-500-normal.ttf"),
         style: "normal",
         weight: 500,
       },
       {
         name: "Figtree",
-        data: await loadFont(
-          "public/assets/figtree/figtree-latin-600-normal.ttf",
-        ),
+        data: await loadFont("assets/figtree/figtree-latin-600-normal.ttf"),
         style: "normal",
         weight: 600,
       },
       {
         name: "Figtree",
-        data: await loadFont(
-          "public/assets/figtree/figtree-latin-700-normal.ttf",
-        ),
+        data: await loadFont("assets/figtree/figtree-latin-700-normal.ttf"),
         style: "normal",
         weight: 700,
       },
