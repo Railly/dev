@@ -189,67 +189,34 @@ export const GET: APIRoute = async ({ params }) => {
     },
   };
 
-  const loadFont = async (fontPath: string): Promise<Buffer> => {
-    const cwd = process.cwd();
-    const fullPath = path.resolve(cwd, fontPath);
-    const fileName = path.basename(fontPath);
-    console.log({ fullPath });
+  const loadFont = async (fontFileName: string): Promise<Buffer> => {
+    const possiblePaths = [
+      // Local development paths
+      path.join(process.cwd(), "public", "assets", "figtree", fontFileName),
+      // Vercel production paths
+      path.join("/vercel/path0", "public", "assets", "figtree", fontFileName),
+      path.join(
+        "/vercel/path0",
+        ".vercel",
+        "output",
+        "static",
+        "assets",
+        "figtree",
+        fontFileName,
+      ),
+    ];
 
-    try {
-      return await fs.readFile(fullPath);
-    } catch (error) {
-      console.error(`Failed to load font from ${fullPath}:`, error);
-
-      // Check common directories first
-      const commonDirs = [
-        path.join(cwd, "public", "assets", "figtree"),
-        path.join(cwd, ".vercel", "output", "static", "assets", "figtree"),
-        // Add more common directories here if needed
-      ];
-
-      for (const dir of commonDirs) {
-        const possiblePath = path.join(dir, fileName);
-        try {
-          const font = await fs.readFile(possiblePath);
-          console.log(`Font found at: ${possiblePath}`);
-          return font;
-        } catch (err) {
-          // File not found in this directory, continue to next
-        }
-      }
-
-      // If not found in common directories, do a full recursive search
-      const foundPath = await searchFileRecursively(cwd, fileName);
-
-      if (foundPath) {
-        console.log(`Font found at: ${foundPath}`);
-        return await fs.readFile(foundPath);
-      } else {
-        throw new Error(
-          `Failed to load font: ${fileName} not found in ${cwd} or its subdirectories`,
-        );
-      }
-    }
-  };
-
-  const searchFileRecursively = async (
-    dir: string,
-    fileName: string,
-  ): Promise<string | null> => {
-    const files = await fs.readdir(dir, { withFileTypes: true });
-
-    for (const file of files) {
-      const filePath = path.join(dir, file.name);
-
-      if (file.isDirectory()) {
-        const result = await searchFileRecursively(filePath, fileName);
-        if (result) return result;
-      } else if (file.name === fileName) {
-        return filePath;
-      }
+    for (const fontPath of possiblePaths) {
+      try {
+        const fontData = await fs.readFile(fontPath);
+        console.log(`Font found at: ${fontPath}`);
+        return fontData;
+      } catch (error) {}
     }
 
-    return null;
+    throw new Error(
+      `Failed to load font: ${fontFileName} not found in any of the expected locations`,
+    );
   };
 
   // @ts-ignore
