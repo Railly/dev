@@ -192,6 +192,7 @@ export const GET: APIRoute = async ({ params }) => {
   const loadFont = async (fontPath: string): Promise<Buffer> => {
     const cwd = process.cwd();
     const fullPath = path.resolve(cwd, fontPath);
+    const fileName = path.basename(fontPath);
     console.log({ fullPath });
 
     try {
@@ -199,18 +200,33 @@ export const GET: APIRoute = async ({ params }) => {
     } catch (error) {
       console.error(`Failed to load font from ${fullPath}:`, error);
 
-      // Search for the file recursively
-      const foundPath = await searchFileRecursively(
-        cwd,
-        path.basename(fontPath),
-      );
+      // Check common directories first
+      const commonDirs = [
+        path.join(cwd, "public", "assets", "figtree"),
+        path.join(cwd, ".vercel", "output", "static", "assets", "figtree"),
+        // Add more common directories here if needed
+      ];
+
+      for (const dir of commonDirs) {
+        const possiblePath = path.join(dir, fileName);
+        try {
+          const font = await fs.readFile(possiblePath);
+          console.log(`Font found at: ${possiblePath}`);
+          return font;
+        } catch (err) {
+          // File not found in this directory, continue to next
+        }
+      }
+
+      // If not found in common directories, do a full recursive search
+      const foundPath = await searchFileRecursively(cwd, fileName);
 
       if (foundPath) {
         console.log(`Font found at: ${foundPath}`);
         return await fs.readFile(foundPath);
       } else {
         throw new Error(
-          `Failed to load font: ${fontPath} not found in ${cwd} or its subdirectories`,
+          `Failed to load font: ${fileName} not found in ${cwd} or its subdirectories`,
         );
       }
     }
@@ -218,7 +234,7 @@ export const GET: APIRoute = async ({ params }) => {
 
   const searchFileRecursively = async (
     dir: string,
-    filename: string,
+    fileName: string,
   ): Promise<string | null> => {
     const files = await fs.readdir(dir, { withFileTypes: true });
 
@@ -226,9 +242,9 @@ export const GET: APIRoute = async ({ params }) => {
       const filePath = path.join(dir, file.name);
 
       if (file.isDirectory()) {
-        const result = await searchFileRecursively(filePath, filename);
+        const result = await searchFileRecursively(filePath, fileName);
         if (result) return result;
-      } else if (file.name === filename) {
+      } else if (file.name === fileName) {
         return filePath;
       }
     }
@@ -243,19 +259,19 @@ export const GET: APIRoute = async ({ params }) => {
     fonts: [
       {
         name: "Figtree",
-        data: await loadFont("assets/figtree/figtree-latin-500-normal.ttf"),
+        data: await loadFont("figtree-latin-500-normal.ttf"),
         style: "normal",
         weight: 500,
       },
       {
         name: "Figtree",
-        data: await loadFont("assets/figtree/figtree-latin-600-normal.ttf"),
+        data: await loadFont("figtree-latin-600-normal.ttf"),
         style: "normal",
         weight: 600,
       },
       {
         name: "Figtree",
-        data: await loadFont("assets/figtree/figtree-latin-700-normal.ttf"),
+        data: await loadFont("figtree-latin-700-normal.ttf"),
         style: "normal",
         weight: 700,
       },
@@ -270,6 +286,4 @@ export async function getStaticPaths() {
   }));
 }
 
-export const config = {
-  runtime: "edge",
-};
+export const prerender = true;
