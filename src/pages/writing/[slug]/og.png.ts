@@ -99,9 +99,9 @@ export const GET: APIRoute = async ({ params }) => {
                       props: {
                         style: {
                           marginLeft: "1rem",
-                          fontSize: "1.25rem",
+                          fontSize: "1.35rem",
                           fontWeight: 600,
-                          color: "#878787",
+                          color: "#959595",
                         },
                         children: "@RaillyHugo",
                       },
@@ -113,9 +113,9 @@ export const GET: APIRoute = async ({ params }) => {
                 type: "span",
                 props: {
                   style: {
-                    fontSize: "1.25rem",
+                    fontSize: "1.35rem",
                     fontWeight: 500,
-                    color: "#888681",
+                    color: "#959595",
                   },
                   children: new Date(post.data.date).toLocaleDateString(
                     "en-US",
@@ -154,8 +154,8 @@ export const GET: APIRoute = async ({ params }) => {
                   style: {
                     fontSize: "1.85rem",
                     fontWeight: 600,
-                    color: "#878787",
-                    maxWidth: "700px",
+                    color: "#959595",
+                    maxWidth: "800px",
                   },
                   children: post.data.excerpt,
                 },
@@ -175,9 +175,9 @@ export const GET: APIRoute = async ({ params }) => {
                 type: "span",
                 props: {
                   style: {
-                    fontSize: "1.25rem",
+                    fontSize: "1.35rem",
                     fontWeight: 500,
-                    color: "#888681",
+                    color: "#959595",
                   },
                   children: "railly.dev",
                 },
