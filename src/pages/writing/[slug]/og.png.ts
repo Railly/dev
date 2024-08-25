@@ -189,10 +189,16 @@ export const GET: APIRoute = async ({ params }) => {
     },
   };
 
-  async function loadFont(fontPath: string) {
-    const filePath = path.join(process.cwd(), "public", fontPath);
-    return fs.readFile(filePath);
-  }
+  const loadFont = async (fontPath: string) => {
+    const fullPath = path.resolve(process.cwd(), fontPath);
+    console.log({ fullPath });
+    try {
+      return await fs.readFile(fullPath);
+    } catch (error) {
+      console.error(`Failed to load font from ${fullPath}:`, error);
+      throw new Error(`Failed to load font from ${fontPath}`);
+    }
+  };
 
   // @ts-ignore
   return new ImageResponse(html, {
@@ -201,19 +207,25 @@ export const GET: APIRoute = async ({ params }) => {
     fonts: [
       {
         name: "Figtree",
-        data: await loadFont("/assets/figtree/figtree-latin-500-normal.ttf"),
+        data: await loadFont(
+          "public/assets/figtree/figtree-latin-500-normal.ttf",
+        ),
         style: "normal",
         weight: 500,
       },
       {
         name: "Figtree",
-        data: await loadFont("/assets/figtree/figtree-latin-600-normal.ttf"),
+        data: await loadFont(
+          "public/assets/figtree/figtree-latin-600-normal.ttf",
+        ),
         style: "normal",
         weight: 600,
       },
       {
         name: "Figtree",
-        data: await loadFont("/assets/figtree/figtree-latin-700-normal.ttf"),
+        data: await loadFont(
+          "public/assets/figtree/figtree-latin-700-normal.ttf",
+        ),
         style: "normal",
         weight: 700,
       },
