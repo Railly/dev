@@ -5,6 +5,7 @@ import BaseHead from "@/components/base-head.astro";
 import GoBack from "@/components/go-back.astro";
 import CounterscaleScript from "@/components/counterscale-script.astro";
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_AUTHOR } from "../config";
+import Footer from "@/components/footer.astro";
 
 interface Props {
   title?: string;
@@ -42,7 +43,6 @@ const {
         <slot />
       </div>
     </main>
-    <!--<Footer />-->
     <CounterscaleScript />
   </body>
 </html>

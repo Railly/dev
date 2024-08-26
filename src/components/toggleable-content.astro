@@ -1,0 +1,84 @@
+---
+import MathSampleMdx from "./raw/math-sample.mdx";
+import MathSampleMd from "./raw/math-sample.md";
+---
+
+<div class="toggleable-math-sample pt-[2em]">
+  <div class="flex justify-between mb-2">
+    <h2 class="my-0 p-0">Example of AI-Generated Notes:</h2>
+    <button
+      class="toggle-button rounded-full bg-background border border-zinc-200 dark:border-zinc-700 py-1 px-3 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus:outline-none transition"
+    >
+      <span class="flex items-center gap-1">
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+        <span class="hidden md:block"> Show Code </span>
+      </span>
+    </button>
+  </div>
+  <div class="code-block" style="display: none;">
+    <MathSampleMd />
+  </div>
+  <div
+    class="markdown-content bg-muted border rounded-md p-8 my-[1.40rem] [font-size:85%] prose-h1:text-2xl"
+  >
+    <MathSampleMdx />
+  </div>
+</div>
+
+<script>
+  function setupToggle(container: HTMLElement) {
+    const button = container.querySelector(
+      ".toggle-button",
+    ) as HTMLButtonElement;
+    const codeBlock = container.querySelector(".code-block") as HTMLElement;
+    const markdownContent = container.querySelector(
+      ".markdown-content",
+    ) as HTMLElement;
+
+    let showingMarkdown = true;
+
+    button.addEventListener("click", () => {
+      showingMarkdown = !showingMarkdown;
+      if (showingMarkdown) {
+        codeBlock.style.display = "none";
+        markdownContent.style.display = "block";
+        updateButtonContent(button, "Show Code");
+      } else {
+        codeBlock.style.display = "block";
+        markdownContent.style.display = "none";
+        updateButtonContent(button, "Render Markdown");
+      }
+    });
+  }
+
+  function updateButtonContent(button: HTMLButtonElement, label: string) {
+    button.innerHTML = `
+      <span class="flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+        <span class="hidden md:block">
+          ${label}
+        </span>
+      </span>
+    `;
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    document
+      .querySelectorAll(".toggleable-math-sample")
+      .forEach((container) => setupToggle(container as HTMLElement));
+  });
+</script>

@@ -119,7 +119,7 @@
 
   body {
     @apply bg-background text-foreground;
-    @apply min-h-screen dark:selection:bg-stone-800 selection:bg-muted antialiased;
+    @apply min-h-screen selection:bg-stone-800/20 dark:selection:bg-stone-200/20 antialiased;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;

@@ -56,7 +56,11 @@ const groupedPosts: GroupedPosts = blogPosts.reduce<GroupedPosts>(
                       {post.data.title}
                     </a>
                     <span class="text-sm text-muted-foreground">
-                      {new Date(post.data.date).toLocaleDateString()}
+                      {new Date(post.data.date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
                     </span>
                   </li>
                 ))}

@@ -1,4 +1,5 @@
 ---
+import Footer from "@/components/footer.astro";
 import WritingLayout from "@/layouts/writing-layout.astro";
 import { getEntry, getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
@@ -24,5 +25,6 @@ const { Content, headings } = await post.render();
   slug={slug}
   headings={headings}
 >
-  <Content /> 
+  <Content />
+  <Footer />
 </WritingLayout>

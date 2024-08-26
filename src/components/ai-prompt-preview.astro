@@ -1,0 +1,107 @@
+---
+import AIPromptMd from "./raw/ai-prompt.md";
+---
+
+<div class="ai-prompt-preview relative pt-[2em]">
+  <div class="flex justify-between mb-2">
+    <h2 class="my-0 p-0">AI Prompt Preview:</h2>
+    <button
+      class="toggle-button rounded-full bg-background border border-zinc-200 dark:border-zinc-700 py-1 px-3 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus:outline-none transition"
+    >
+      <span class="flex items-center gap-1">
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+        <span class="hidden md:block"> Show Full Prompt </span>
+      </span>
+    </button>
+  </div>
+  <div
+    class="prompt-content [font-size:85%] prose-h1:text-2xl relative overflow-hidden"
+  >
+    <AIPromptMd />
+    <div
+      class="blur-overlay absolute bottom-0 left-0 right-0 h-[calc(100%-80px)] bg-gradient-to-t from-muted to-transparent"
+    >
+    </div>
+  </div>
+</div>
+
+<style>
+  .prompt-content {
+    max-height: 300px;
+    overflow-y: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  .prompt-content.expanded {
+    max-height: none;
+  }
+  .blur-overlay {
+    transition:
+      opacity 0.3s ease-out,
+      visibility 0s 0.3s;
+  }
+  .blur-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease-out,
+      visibility 0s;
+  }
+</style>
+
+<script>
+  function setupToggle(container: HTMLElement) {
+    const button = container.querySelector(
+      ".toggle-button",
+    ) as HTMLButtonElement;
+    const promptContent = container.querySelector(
+      ".prompt-content",
+    ) as HTMLElement;
+    const blurOverlay = container.querySelector(".blur-overlay") as HTMLElement;
+
+    let isExpanded = false;
+
+    button.addEventListener("click", () => {
+      isExpanded = !isExpanded;
+      if (isExpanded) {
+        promptContent.classList.add("expanded");
+        blurOverlay.classList.add("hidden");
+        updateButtonContent(button, "Show Preview");
+      } else {
+        promptContent.classList.remove("expanded");
+        blurOverlay.classList.remove("hidden");
+        updateButtonContent(button, "Show Full Prompt");
+      }
+    });
+  }
+
+  function updateButtonContent(button: HTMLButtonElement, label: string) {
+    button.innerHTML = `
+      <span class="flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+        <span class="hidden md:block">
+          ${label}
+        </span>
+      </span>
+    `;
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    document
+      .querySelectorAll(".ai-prompt-preview")
+      .forEach((container) => setupToggle(container as HTMLElement));
+  });
+</script>

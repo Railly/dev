@@ -1,0 +1,53 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="[grid-column:2] mt-16 mb-8">
+  <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+    <div class="flex items-center gap-2 !text-muted-foreground">
+      <p class="text-sm !text-muted-foreground m-0">
+        © {currentYear} Railly Hugo
+      </p>
+      <span class="!text-muted-foreground">~</span>
+      <p class="text-sm !text-muted-foreground m-0">
+        Built with <a
+          href="https://astro.build"
+          target="_blank"
+          class="underline text-muted-foreground hover:text-foreground transition-colors"
+          >Astro 🚀</a
+        >
+      </p>
+    </div>
+    <nav>
+      <ul class="flex gap-4 list-none p-0 m-0">
+        <li>
+          <a
+            href="https://twitter.com/raillyhugo"
+            target="_blank"
+            class="text-sm text-muted-foreground font-bold hover:text-foreground transition-colors"
+          >
+            𝕏
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/Railly"
+            target="_blank"
+            class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://linkedin.com/in/raillyhugo"
+            target="_blank"
+            class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</footer>

@@ -10,13 +10,12 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 });
 
 function getReadingTime(content: string) {
-  const wordsPerMinute = 200;
+  const wordsPerMinute = 600;
   const numberOfWords = content.split(/\s/g).length;
   const minutes = numberOfWords / wordsPerMinute;
   return Math.ceil(minutes);
 }
 
-// Get the content of the post
 const content = await Astro.slots.render("default");
 const readingTime = getReadingTime(content);
 ---
@@ -31,7 +30,7 @@ const readingTime = getReadingTime(content);
   image={"/writing/" + slug + "/og.png"}
 >
   <div
-    class="[grid-content:2] prose prose-p:text-foreground prose-li:text-foreground dark:prose-headings:text-[#e5e5de] dark:prose-strong:text-[#e5e5de] dark:prose-invert font-sans w-full max-w-full md:max-w-[768px] antialiased prose-a:decoration-muted-foreground/30 dark:prose-a:decoration-muted-foreground/70 prose-a:underline-offset-2 hover:prose-a:decoration-muted-foreground/70 dark:hover:prose-a:decoration-muted-foreground transition-colors duration-500 prose-hr:border-border prose-blockquote:border-foreground/70"
+    class="[grid-content:2] prose prose-ul:leading-6 prose-ol:leading-6 prose-p:text-foreground prose-li:text-foreground prose-headings:text-[#0d0c0c] prose-strong:text-[#0d0c0c] prose-strong:font-bold dark:prose-headings:text-[#e5e5de] dark:prose-strong:text-[#e5e5de] dark:prose-invert font-sans w-full max-w-full md:max-w-[768px] antialiased prose-a:decoration-muted-foreground/30 dark:prose-a:decoration-muted-foreground/70 prose-a:underline-offset-2 hover:prose-a:decoration-muted-foreground/70 dark:hover:prose-a:decoration-muted-foreground transition-colors duration-500 prose-hr:border-border prose-blockquote:border-foreground/70"
   >
     <h1 class="font-bold m-0 text-center">{title}</h1>
     <p class="text-sm mt-2 mb-8 text-muted-foreground text-center">
@@ -88,7 +87,7 @@ const readingTime = getReadingTime(content);
       await navigator.clipboard.writeText(text || "");
 
       button.disabled = true;
-      button.classList.add("opacity-50", "cursor-not-allowed");
+      button.classList.add("cursor-not-allowed");
       button.innerHTML = `
         <span class="flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -102,9 +101,16 @@ const readingTime = getReadingTime(content);
 
       setTimeout(() => {
         button.innerHTML = createButtonContent(copyButtonLabel);
-        button.classList.remove("opacity-50", "cursor-not-allowed");
+        button.classList.remove("cursor-not-allowed");
         button.disabled = false;
       }, 1000);
     }
   });
 </script>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css"
+  integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM"
+  crossorigin="anonymous"
+/>
